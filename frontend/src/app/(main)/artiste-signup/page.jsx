@@ -1,6 +1,6 @@
 import React from 'react'
 
-const artisteSignup = () => {
+const ArtisteSignup = () => {
     return (
         <div className='max-w-xl mx-auto'>
             <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
@@ -127,7 +127,7 @@ const artisteSignup = () => {
                                 </div>
                                 {/* End Form Group */}
                                 {/* Form Group */}
-                                <div>
+                                <div> 
                                     <label
                                         htmlFor="confirm-password"
                                         className="block text-sm mb-2 dark:text-white"
@@ -203,4 +203,4 @@ const artisteSignup = () => {
     )
 }
 
-export default artisteSignup;
+export default ArtisteSignup;
