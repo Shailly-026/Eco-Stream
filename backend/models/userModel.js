@@ -1,4 +1,3 @@
-const {default:mongoose} = require ('mongoose');
 const {Schema , model }= require ("../connection");
 
 const userSchema= new Schema({
@@ -9,4 +8,4 @@ const userSchema= new Schema({
 
 })
 
-model.exports = model('user' , userSchema);
+module.exports = model('user' , userSchema);

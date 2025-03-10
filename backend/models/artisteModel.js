@@ -1,7 +1,7 @@
 const {default: mongoose} =require('mongoose');
 const { Schema, model } = require("../connection");
 
-const artistSchema = new Schema({
+const artisteSchema = new Schema({
     name: String,
     email: { type: String, unique: true },
     password: { type: String, unique: true },
@@ -17,4 +17,4 @@ const artistSchema = new Schema({
 
 })
 
-model.exports = model('artist', artistSchema);
+module.exports = model('artiste', artisteSchema);
