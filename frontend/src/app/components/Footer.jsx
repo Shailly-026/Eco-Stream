@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="bg-black text-white  py-6">
           <div className=" max-w-[90%] md:max-w-[80%] mx-auto grid grid-cols-12">
             <div className="col-span-12 md:col-span-4">
-              <h2 className="text-xl font-bold">XStreams</h2>
+              <h2 className="text-xl font-bold">Eco Streams</h2>
               <p>All rights reserved © 2025</p>
             </div>
             <div className="col-span-6 md:col-span-2">
@@ -39,13 +39,13 @@ const Footer = () => {
                   <a href="" className="hover:text-crimson">
                     <i className="fa-brands fa-instagram" />
                   </a>
-                  <a href="">
+                  <a href=""className="hover:text-crimson">
                     <i className="fa-brands fa-x-twitter" />
                   </a>
-                  <a href="">
+                  <a href=""className="hover:text-crimson">
                     <i className="fa-brands fa-linkedin-in" />
                   </a>
-                  <a href="">
+                  <a href=""className="hover:text-crimson">
                     <i className="fa-brands fa-google" />
                   </a>
                 </div>
