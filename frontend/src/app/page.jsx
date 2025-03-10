@@ -4,10 +4,10 @@ import Image from "next/image";
 const App = () => {
   return (
     <div>
+      
       {/* Header Section */}
       <div className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-4">
-
+        <div className="container mx-auto px-4 py-4 bg-black-500">
           <nav className="flex items-center justify-between">
             <a href="index.html">
               <img src="images/logo.png" alt="Logo" />
@@ -31,13 +31,13 @@ const App = () => {
                 About
               </a>
               <a className="text-gray-800 hover:text-gray-600" href="icecream.html">
-                Icecream
+                Artist signup
               </a>
               <a className="text-gray-800 hover:text-gray-600" href="services.html">
-                Services
+                Artist login
               </a>
               <a className="text-gray-800 hover:text-gray-600" href="blog.html">
-                Blog
+                Services
               </a>
               <a className="text-gray-800 hover:text-gray-600" href="contact.html">
                 Contact Us
@@ -45,25 +45,36 @@ const App = () => {
               <div className="flex items-center">
                 <a className="text-gray-800 hover:text-gray-600 flex items-center" href="#">
                   Login <i className="fa fa-user ml-2"></i>
-
                 </a>
                 <div className="fa fa-search ml-4"></div>
               </div>
             </div>
           </nav>
         </div>
+        
+      
+
+      
+              
+
+      {/*About Eco Stream */}
+      <div className="py-16">
+        <div className="container mx-auto text-center">
+          <h1 className="text-4xl font-bold">podcast</h1>
+          <p className="text-lg mt-4">tempor incididunt ut labore et dolore magna aliqua</p>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            {['img-1', 'img-2', 'img-3', 'img-4', 'img-5'].map((img, index) => (
+              <div className="bg-white shadow-lg p-6" key={index}>
+                <img src={`images/${img}.png`} alt={`Ice Cream ${index + 1}`} className="w-full" />
+                <div className="mt-4 text-2xl font-semibold">$10</div>
+                <h6 className="text-lg mt-2"></h6>
+                <a href="#" className="mt-4 inline-block bg-blue-500 text-white py-2 px-6 rounded-md">Add To Cart</a>
+              </div>
+            ))}
+          </div>
+          <a href="#" className="mt-6 text-blue-500">See More</a>
+        </div>
       </div>
-
-      {/* Banner Section */}
-    
-     
-
-      {/* About Section */}
-  
-
-
-      {/* Featured Ice Cream Section */}
-  
 
       {/* Services Section */}
       <div className="py-16 bg-gray-100">
@@ -77,7 +88,7 @@ const App = () => {
                   <span className="inline-block mr-2">
                     <img src={`images/${icon}.png`} alt="Service Icon" className="inline-block w-6" />
                   </span>
-                  Cookies Ice Cream
+                  Horror Related Podast
                 </h5>
                 <p className="text-lg mt-4">commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fat.</p>
               </div>
@@ -110,15 +121,10 @@ const App = () => {
 
       {/* Contact Section */}
      
-      {/* Footer Section */}
-      <div className="bg-gray-800 py-6 text-center text-white">
-        <p className="text-lg">
-          2020 All Rights Reserved. Design by{" "}
-          <a href="https://html.design" className="text-blue-400">Free Html Templates</a> Distribution by{" "}
-          <a href="https://themewagon.com" className="text-blue-400">ThemeWagon</a>
-        </p>
-      </div>
     </div>
+    </div>
+
+  
   );
 };
 
