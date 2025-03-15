@@ -8,8 +8,8 @@ require('dotenv').config();
 
 router.post('/add', (req, res) => {
     console.log(req.body);
-    
-    new Model(req.body).save()      //to save data in database using mongoose
+    new Model(req.body).save()
+        
         .then((result) => {
             res.status(200).json(result);
         }).catch((err) => {

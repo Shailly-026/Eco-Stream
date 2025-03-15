@@ -121,7 +121,6 @@ const App = () => {
 
       {/* Contact Section */}
      
-
     </div>
     </div>
     </div>

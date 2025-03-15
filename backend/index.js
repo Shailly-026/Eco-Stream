@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors= require('cors');
+
 
 const artisteRouter = require("./routers/artisteRouter")
 const podcastRouter = require("./routers/podcastRouter");
@@ -11,11 +13,13 @@ const app = express();
 
 //middleware
 const port=5000;
+app.use(cors({origin: ['http://localhost:3000']}));
 app.use(express.json());
-app.use("/api/artistes", artisteRouter);
-app.use("/api/series", seriesRouter);
-app.use("/api/podcasts", podcastRouter);
-app.use("/api/user", userRouter);
+
+app.use("/artistes", artisteRouter);
+app.use("/series", seriesRouter);
+app.use("/podcasts", podcastRouter);
+app.use("/user", userRouter);
 
 
 

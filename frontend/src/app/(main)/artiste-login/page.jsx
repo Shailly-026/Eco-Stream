@@ -1,15 +1,14 @@
-'use client';
-import React from 'react';
+'use client'
+import React from 'react'
 import { Formik, useFormik } from 'formik';
-import * as Yup from 'yup';
 
 
-const LoginSchema = Yup.object().shape({
+const ArtisteLoginSchema = Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Required'),
 });
 const Login = () => {
 
-    const loginform = useFormik({
+    const artisteloginform = useFormik({
         initialValues: {
             email: '',
             password: '',
@@ -20,8 +19,10 @@ const Login = () => {
 
             //send values to backend
         },
-        validationSchema: LoginSchema
+        validationSchema: ArtisteLoginSchema
     })
+
+    const ArtisteLogin = () => {
         return (
             <div className='max-w-xl mx-auto'>
                 <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
@@ -75,7 +76,7 @@ const Login = () => {
                                 Or
                             </div>
                             {/* Form */}
-                            <form  onSubmit={loginform.handleSubmit}>
+                            <form  onSubmit={artisteloginform.handleSubmit}>
                                 <div className="grid gap-y-4">
                                     {/* Form Group */}
                                     <div>
@@ -89,8 +90,8 @@ const Login = () => {
                                             <input
                                                 type="email"
                                                 id="email"
-                                                 onChange={loginform.handleChange}
-                                                 value={loginform.data.email}
+                                                 onChange={artisteloginform.handleChange}
+                                                 value={artisteloginform.data.email}
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                 required=""
                                                 aria-describedby="email-error"
@@ -109,10 +110,10 @@ const Login = () => {
                                             </div>
                                         </div>
                                         {
-                                        (loginform.touched.email && loginform.errors.email) &&
+                                        (artisteloginform.touched.email && artisteloginform.errors.email) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {loginform.errors.email}
+                                                {artisteloginform.errors.email}
                                             </p>
                                         )
                                     }
@@ -138,8 +139,8 @@ const Login = () => {
                                             <input
                                                 type="password"
                                                 id="password"
-                                                 onChange={loginform.handleChange}
-                                                 value={loginform.data.email}
+                                                 onChange={artisteloginform.handleChange}
+                                                 value={artisteloginform.data.email}
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                 required=""
                                                 aria-describedby="password-error"
@@ -158,10 +159,10 @@ const Login = () => {
                                             </div>
                                         </div>
                                         {
-                                        (loginform.touched.password && loginform.errors.password) &&
+                                        (artisteloginform.touched.password && artisteloginform.errors.password) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {loginform.errors.password}
+                                                {artisteloginform.errors.password}
                                             </p>
                                         )
                                     }
@@ -199,4 +200,6 @@ const Login = () => {
             </div>
         )
     }
-    export default Login;
+
+}
+    export default ArtisteLogin;
