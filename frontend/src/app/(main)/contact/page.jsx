@@ -2,11 +2,12 @@ import React from 'react'
 
 const Contact = () => {
   return (
-    <div className=''>
+    <div className='contact-bg'style={{backgroundImage: `url('/bg.jpg.jpg' bg-cover)`}}>
+    <div>
       <div className=" mx-w-xl mx-auto py-16 bg-gray-100 contact-bg" >
         <div className="container mx-auto ">
           <div className="w-1/3">
-            <h1 className="text-4xl font-bold">Contact Us</h1>
+            <h1 className="text-4xl font-bold text-white">Contact Us</h1>
             <form action="/action_page.php">
               <div className="mt-6">
                 <input type="text" className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Name" name="Name" />
@@ -43,6 +44,7 @@ const Contact = () => {
           </ul>
         </div>
       </div>
+    </div>
     </div>
 
   )

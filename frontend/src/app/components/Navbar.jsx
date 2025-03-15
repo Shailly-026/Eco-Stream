@@ -15,7 +15,7 @@ const Navbar = () => {
                             className="h-8"
                             alt="Flowbite Logo"
                         />
-                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                        <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white  ">
                             Eco Stream
                         </span>
                     </Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
                                         </Link>
                                     </li>
                                 </ul>
-                                <div className="py-1">
+                                <div className="py-1 ">
                                     <Link
                                         href="#"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"

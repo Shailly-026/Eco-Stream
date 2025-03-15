@@ -2,4 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
+.home-bg{
+     background-image: url('../../public/record.jpg'); 
+}
+.contact-bg{
+      background-image: url('../../public/bg.jpg.jpg'); 
+}

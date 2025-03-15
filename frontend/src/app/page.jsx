@@ -1,12 +1,12 @@
 import React from "react";
-import Image from "next/image";
 
 const App = () => {
   return (
+    <div className="home-bg" style={{backgroundImage: `url('/record.jpg' bg-cover)`}}>
     <div>
       
       {/* Header Section */}
-      <div className="bg-white shadow-md">
+      <div className="shadow-md ">
         <div className="container mx-auto px-4 py-4 bg-black-500">
           <nav className="flex items-center justify-between">
             <a href="index.html">
@@ -23,27 +23,27 @@ const App = () => {
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="hidden lg:flex space-x-6">
-              <a className="text-gray-800 hover:text-gray-600" href="index.html">
+            <div className="hidden lg:flex space-x-6  ">
+              <a className="text-gray-800 hover:text-white" href="index.html">
                 Home
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="about.html">
+              <a className="text-gray-800 hover:text-white" href="about.html">
                 About
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="icecream.html">
+              <a className="text-gray-800 hover:text-" href="icecream.html">
                 Artist signup
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="services.html">
+              <a className="text-gray-800 hover:text-white" href="services.html">
                 Artist login
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="blog.html">
+              <a className="text-gray-800 hover:text-white" href="blog.html">
                 Services
               </a>
-              <a className="text-gray-800 hover:text-gray-600" href="contact.html">
+              <a className="text-gray-800 hover:text-white" href="contact.html">
                 Contact Us
               </a>
               <div className="flex items-center">
-                <a className="text-gray-800 hover:text-gray-600 flex items-center" href="#">
+                <a className="text-gray-800 hover:text-white-flex items-center" href="#">
                   Login <i className="fa fa-user ml-2"></i>
                 </a>
                 <div className="fa fa-search ml-4"></div>
@@ -122,6 +122,7 @@ const App = () => {
       {/* Contact Section */}
      
 
+    </div>
     </div>
     </div>
 
