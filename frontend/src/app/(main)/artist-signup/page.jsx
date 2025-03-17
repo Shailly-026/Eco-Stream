@@ -1,13 +1,13 @@
 'use client'
 import axios from 'axios';
-import {IconLoader3,IconSend2} from '@tabler/icons-react';
+import { IconLoader3, IconSend2 } from '@tabler/icons-react';
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
 import * as Yup from 'yup';
 
-const ArtisteSignupSchema = Yup.object().shape({
+const ArtistSignupSchema = Yup.object().shape({
     name: Yup.string()       //yup is a liabrary use for validation
         .min(2, 'Too Short!')
         .max(50, 'Too Long!')
@@ -22,23 +22,23 @@ const ArtisteSignupSchema = Yup.object().shape({
         .oneOf([Yup.ref('password'), null], 'Passwords must match')
 });
 
-const ArtisteSignup = () => {
+const ArtistSignup = () => {
 
     const router = useRouter();
     //initializing formik
-    const artistesignupform = useFormik({
+    const artistsignupform = useFormik({
         initialValues: {
             name: '',
             email: '',
             password: '',
             confirmPassword: ''
         },
-        onSubmit: (value,{resetForm, setSubmitting}) => {          // formvalue
+        onSubmit: (value, { resetForm, setSubmitting }) => {          // formvalue
             console.log(value);
 
             //send values to backend
 
-            axios.post('http://localhost:5000/user/add', value)
+            axios.post('http://localhost:5000/artist/add', value)
                 .then((result) => {
                     toast.success('User added Successfully');
                     resetForm();
@@ -49,11 +49,11 @@ const ArtisteSignup = () => {
                     setSubmitting(false);
                 });
         },
-        validationSchema: ArtisteSignupSchema
+        validationSchema: ArtistSignupSchema
     })
-   
 
-     console.log(artistesignupform.errors);
+
+    console.log(artistsignupform.errors);
     return (
         <div className='max-w-xl mx-auto'>
             <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
@@ -107,7 +107,7 @@ const ArtisteSignup = () => {
                             Or
                         </div>
                         {/* Form */}
-                        <form onSubmit={artistesignupform.handleSubmit}>
+                        <form onSubmit={artistsignupform.handleSubmit}>
                             <div className="grid gap-y-4">
                                 {/* Form Group */}
                                 <div>
@@ -121,8 +121,8 @@ const ArtisteSignup = () => {
                                         <input
                                             type="text"
                                             id="name"
-                                            onChange={artistesignupform.handleChange}
-                                            value={artistesignupform.values.name}
+                                            onChange={artistsignupform.handleChange}
+                                            value={artistsignupform.values.name}
                                             className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                             required=""
                                             aria-describedby="email-error"
@@ -141,10 +141,10 @@ const ArtisteSignup = () => {
                                         </div>
                                     </div>
                                     {
-                                        (artistesignupform.touched.name && artistesignupform.errors.name) &&
+                                        (artistsignupform.touched.name && artistsignupform.errors.name) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {artistesignupform.errors.name}
+                                                {artistsignupform.errors.name}
                                             </p>
                                         )
                                     }
@@ -163,8 +163,8 @@ const ArtisteSignup = () => {
                                         <input
                                             type="email"
                                             id="email"
-                                            onChange={artistesignupform.handleChange}
-                                            value={artistesignupform.values.email}
+                                            onChange={artistsignupform.handleChange}
+                                            value={artistsignupform.values.email}
                                             className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                             required=""
                                             aria-describedby="email-error"
@@ -183,10 +183,10 @@ const ArtisteSignup = () => {
                                         </div>
                                     </div>
                                     {
-                                        (artistesignupform.touched.email && artistesignupform.errors.email) &&
+                                        (artistsignupform.touched.email && artistsignupform.errors.email) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {artistesignupform.errors.email}
+                                                {artistsignupform.errors.email}
                                             </p>
                                         )
                                     }
@@ -214,8 +214,8 @@ const ArtisteSignup = () => {
                                         <input
                                             type="password"
                                             id="password"
-                                            onChange={artistesignupform.handleChange}
-                                            value={artistesignupform.values.password}
+                                            onChange={artistsignupform.handleChange}
+                                            value={artistsignupform.values.password}
                                             className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                             required=""
                                             aria-describedby="password-error"
@@ -234,10 +234,10 @@ const ArtisteSignup = () => {
                                         </div>
                                     </div>
                                     {
-                                        (artistesignupform.touched.password && artistesignupform.errors.password) &&
+                                        (artistsignupform.touched.password && artistsignupform.errors.password) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {artistesignupform.errors.password}
+                                                {artistsignupform.errors.password}
                                             </p>
                                         )
                                     }
@@ -257,8 +257,8 @@ const ArtisteSignup = () => {
                                             <input
                                                 type="Password"
                                                 id="confirmPassword"
-                                                onChange={artistesignupform.handleChange}
-                                                value={artistesignupform.values.confirmPassword}
+                                                onChange={artistsignupform.handleChange}
+                                                value={artistsignupform.values.confirmPassword}
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                 required=""
                                                 aria-describedby="confirm-password-error"
@@ -277,10 +277,10 @@ const ArtisteSignup = () => {
                                             </div>
                                         </div>
                                         {
-                                            (artistesignupform.touched.confirmPassword && artistesignupform.errors.confirmPassword) &&
+                                            (artistsignupform.touched.confirmPassword && artistsignupform.errors.confirmPassword) &&
                                             (
                                                 <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                    {artistesignupform.errors.confirmPassword}
+                                                    {artistsignupform.errors.confirmPassword}
                                                 </p>
                                             )
                                         }
@@ -313,13 +313,13 @@ const ArtisteSignup = () => {
                                 </>
 
                                 <button
-                                disabled={artistesignupform.isSubmitting}
+                                    disabled={artistsignupform.isSubmitting}
                                     type="submit"
                                     className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 focus:outline-none focus:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                 >
                                     {
-                                        artistesignupform.isSubmitting ? <IconLoader3 className='animate-spin'/>:
-                                        <IconSend2/>
+                                        artistsignupform.isSubmitting ? <IconLoader3 className='animate-spin' /> :
+                                            <IconSend2 />
                                     }
                                     Sign up
                                 </button>
@@ -334,4 +334,4 @@ const ArtisteSignup = () => {
     )
 }
 
-export default ArtisteSignup;
+export default ArtistSignup;
