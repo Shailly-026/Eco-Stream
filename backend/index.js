@@ -16,9 +16,9 @@ const port=5000;
 app.use(cors({origin: ['http://localhost:3000']}));
 app.use(express.json());
 
-app.use("/artistes", artisteRouter);
+app.use("/artist", artisteRouter);
 app.use("/series", seriesRouter);
-app.use("/podcasts", podcastRouter);
+app.use("/podcast", podcastRouter);
 app.use("/user", userRouter);
 
 

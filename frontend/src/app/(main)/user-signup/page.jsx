@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
-import * as Yup from 'yup';
+import * as Yup from 'Yup';
 
 const SignupSchema = Yup.object().shape({
     name: Yup.string()       //yup is a liabrary use for validation

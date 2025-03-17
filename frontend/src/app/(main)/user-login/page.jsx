@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Formik, useFormik } from 'formik';
+import { useFormik } from 'formik';
 import * as Yup from 'Yup';
 
 
@@ -10,7 +10,7 @@ const LoginSchema = Yup.object().shape({
 const Login = () => {
 
     const loginForm = useFormik({
-        initialValues: {
+        initialValues: { 
             email: '',
             password: '',
 
@@ -109,7 +109,7 @@ const Login = () => {
                                             </div>
                                         </div>
                                         {
-                                        (loginForm.touched.email && loginform.errors.email) &&
+                                        (loginForm.touched.email && loginForm.errors.email) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
                                                 {loginForm.errors.email}
@@ -138,8 +138,8 @@ const Login = () => {
                                             <input
                                                 type="password"
                                                 id="password"
-                                                 onChange={loginform.handleChange}
-                                                 value={loginform.data.email}
+                                                 onChange={loginForm.handleChange}
+                                                 value={loginForm.data.email}
                                                 className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
                                                 required=""
                                                 aria-describedby="password-error"
@@ -158,10 +158,10 @@ const Login = () => {
                                             </div>
                                         </div>
                                         {
-                                        (loginform.touched.password && loginform.errors.password) &&
+                                        (loginForm.touched.password && loginForm.errors.password) &&
                                         (
                                             <p className="text-xs text-red-600 mt-2" id="email-error">
-                                                {loginform.errors.password}
+                                                {loginForm.errors.password}
                                             </p>
                                         )
                                     }
