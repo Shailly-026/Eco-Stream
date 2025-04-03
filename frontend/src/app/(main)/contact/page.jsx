@@ -1,7 +1,7 @@
 'use client';
 import { useFormik } from 'formik';
 import React from 'react'
-// import * as Yup from 'yup';
+import * as Yup from 'Yup';
 
 const ContactSchema = Yup.object().shape({
   name:Yup.string()
@@ -21,7 +21,7 @@ const ContactForm = useFormik({
   initialValues: {
     name: '',
     email: '',
-    phone: number,
+    phone: '',
     msg: ''
   },
 
