@@ -1,17 +1,31 @@
-'use client';
+import React, { Profiler } from 'react'
+
 
 import "./globals.css";
+//import Sidebar from './components/Sidebar';
+// import Footer from './components/Footer';
+// import Avatar from './components/Avatar';
+import Navbar from './components/Navbar';
+import Sidebar from './components/Sidebar';
+import { Toaster } from 'react-hot-toast';
+
+
+
+
+
+
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
+        <Toaster />
         {/* Sidebar for navigation */}
-        {/* <Sidebar/> */}
+        {/* <Navbar /> */}
+        {/* {<Avatar />} */}
+        {children}
 
         {/* Main content area */}
-       
-        <main className="flex-1 p-4">{children}</main>
-      
+        {/* <Footer /> */}
       </body>
     </html>
   );
