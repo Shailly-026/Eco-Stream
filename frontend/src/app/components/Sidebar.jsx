@@ -10,9 +10,9 @@ const CollapsibleSidebar = ({ children }) => {
   };
 
   const menuItems = [
-    { icon: <Home size={20} />, label: 'Dashboard', active: true },
-    { icon: <Users size={20} />, label: 'Users', hasSubmenu: true },
-    { icon: <Briefcase size={20} />, label: 'Account', hasSubmenu: true },
+    { icon: <Home size={20} />, label: 'Home', active: true },
+    { icon: <Users size={20} />, label: 'My Space', hasSubmenu: true },
+    { icon: <Briefcase size={20} />, label: 'Categories', hasSubmenu: true },
     { icon: <FolderClosed size={20} />, label: 'Projects', hasSubmenu: true },
     { icon: <Calendar size={20} />, label: 'Calendar', badge: 'New' },
     { icon: <FileText size={20} />, label: 'Documentation' },

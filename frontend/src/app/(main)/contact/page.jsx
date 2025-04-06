@@ -1,5 +1,6 @@
 'use client';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/router';
 import React from 'react'
 import * as Yup from 'Yup';
 
@@ -17,13 +18,20 @@ const ContactSchema = Yup.object().shape({
 
 });
 const Contact = () => {
+  const router= useRouter();
 const ContactForm = useFormik({
+
   initialValues: {
     name: '',
     email: '',
     phone: '',
     msg: ''
   },
+  onSubmit:(value,{resetForm, setSubmitting})=>{  
+    console.log(values);
+    
+  },
+  validationSchema:ContactSchema
 
 })
 
@@ -34,15 +42,15 @@ const ContactForm = useFormik({
         <div className="container mx-auto ">
           <div className="w-1/3">
             <h1 className="text-4xl font-bold text-white">Contact Us</h1>
-            <form action="/action_page.php">
+            <form onSubmit={ContactForm.handleSubmit} >
               <div className="mt-6">
-                <input type="text" className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Name" id='name' name="Name" />
+                <input type="text"onChange={ContactForm.handleChange }value={ContactForm.values.name} className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Name" id='name' name="Name" />
               </div>
               <div className="mt-4">
-                <input type="text" className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Email" id='email' name="Email" />
+                <input type="text" onChange={ContactForm.handleChange }value={ContactForm.values.email} className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Email" id='email' name="Email" />
               </div>
               <div className="mt-4">
-                <input type="text" className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Phone Number" id='phone' name="Phone" />
+                <input type="text" onChange={ContactForm.handleChange }value={ContactForm.values.phone} className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Phone Number" id='phone' name="Phone" />
               </div>
               <div className="mt-4">
                 <textarea className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Message" rows="5" id='msg' name="Message"></textarea>

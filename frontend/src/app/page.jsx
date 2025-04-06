@@ -1,9 +1,25 @@
- 'use client';
-import React from 'react';
+'use client';
+import React, { useState } from "react";
 import Head from 'next/head';
 import { Mic, PlayCircle, Headphones, Settings, Star, ChevronRight } from 'lucide-react';
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [authType, setAuthType] = useState(""); // "login" or "signup"
+
+  // Open modal and set auth type
+  const openModal = (type) => {
+    setAuthType(type);
+    setIsModalOpen(true);
+  };
+
+  // Redirect user based on selection
+  const handleSelection = (role) => {
+    const path = authType === "login" ? `/${role}-login` : `/${role}-signup`;
+    window.location.href = path;
+  };
+
+
   return (
     <div className="min-h-screen bg-black text-white">
       <Head>
@@ -25,8 +41,8 @@ export default function Home() {
             <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <button  className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Log In</button>
-            <button className="text-sm px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">Sign Up Free</button>
+            <button onClick={() => openModal("login")} className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Log In</button>
+            <button onClick={() => openModal("signup")} className="text-sm px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">Sign Up Free</button>
           </div>
         </div>
       </header>
@@ -59,6 +75,32 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Role Selection Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
+          <div className="bg-gray-800 p-6 rounded-lg text-center shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Select Your Role</h2>
+            <div className="space-x-4">
+              <button
+                onClick={() => handleSelection("user")}
+                className="px-6 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-lg"
+              >
+                User
+              </button>
+              <button
+                onClick={() => handleSelection("artist")}
+                className="px-6 py-3 bg-purple-600 hover:bg-purple-500 rounded-lg text-lg"
+              >
+                Artist
+              </button>
+            </div>
+            <button onClick={() => setIsModalOpen(false)} className="mt-4 text-gray-400 hover:text-white">
+              Cancel
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Features Section */}
       <section id="features" className="py-20 bg-black/90">
@@ -393,7 +435,7 @@ export default function Home() {
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Blog</a></li>
               </ul>
             </div>
-            
+
             <div>
               <h4 className="font-semibold text-lg mb-4">Resources</h4>
               <ul className="space-y-2">
@@ -406,12 +448,12 @@ export default function Home() {
               </ul>
             </div>
           </div>
-          
+
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-500 text-sm">
             <p>&copy; {new Date().getFullYear()} EcoStream. All rights reserved.</p>
           </div>
         </div>
       </footer>
-    </div>
+    </div >
   );
 }

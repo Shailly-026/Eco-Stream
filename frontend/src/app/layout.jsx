@@ -7,6 +7,7 @@ import "./globals.css";
 // import Avatar from './components/Avatar';
 import Navbar from './components/Navbar';
 import Sidebar from './components/Sidebar';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -17,12 +18,12 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
+        <Toaster />
         {/* Sidebar for navigation */}
-        <Navbar />
+        {/* <Navbar /> */}
         {/* {<Avatar />} */}
+        {children}
 
-          <main className="flex-1 p-4">{children}</main>
-        
         {/* Main content area */}
         {/* <Footer /> */}
       </body>

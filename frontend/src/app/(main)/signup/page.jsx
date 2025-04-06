@@ -1,4 +1,5 @@
 'use client';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 import { useState } from 'react'; // Import useState
 
@@ -7,6 +8,7 @@ const PodcastLoginForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -95,8 +97,8 @@ const PodcastLoginForm = () => {
             <button
               type="submit"
               className={`w-full py-2 px-4 rounded-md text-white font-semibold focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 ${isLoading
-                  ? 'bg-gray-400 cursor-not-allowed'
-                  : 'bg-indigo-600 hover:bg-indigo-700'
+                ? 'bg-gray-400 cursor-not-allowed'
+                : 'bg-indigo-600 hover:bg-indigo-700'
                 }`}
               disabled={isLoading}
             >
