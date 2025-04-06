@@ -1,5 +1,7 @@
+'use client';
 import { useState } from "react";
-
+import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 export default function AddPodcast() {
   const [formData, setFormData] = useState({
@@ -12,6 +14,8 @@ export default function AddPodcast() {
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
+  const { width, height } = useWindowSize();
 
   // Handle form input changes
   const handleChange = (e) => {
@@ -35,8 +39,12 @@ export default function AddPodcast() {
       });
 
       if (response.ok) {
-        setMessage("Podcast added successfully!");
+        setMessage("🎉 Podcast added successfully!");
         setFormData({ title: "", description: "", audioUrl: "", duration: "", tags: "" });
+
+        // Show confetti animation
+        setShowConfetti(true);
+        setTimeout(() => setShowConfetti(false), 3000); // Stop confetti after 3 seconds
       } else {
         setMessage("Failed to add podcast. Please try again.");
       }
@@ -44,16 +52,18 @@ export default function AddPodcast() {
       console.error("Error:", error);
       setMessage("An error occurred while adding the podcast.");
     }
-    
+
     setLoading(false);
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center">
+      {showConfetti && <Confetti confettiSource={{x: width/2, y: 300}} width={width} height={height} />}
+
       <div className="max-w-lg w-full bg-gray-800 p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-4">Add a New Podcast</h2>
         {message && <p className="text-center text-green-400">{message}</p>}
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
