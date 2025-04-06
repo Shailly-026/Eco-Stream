@@ -4,6 +4,7 @@ import Confetti from "react-confetti";
 import { useWindowSize } from "react-use";
 
 export default function AddPodcast() {
+
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -36,29 +37,31 @@ export default function AddPodcast() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(podcastData),
     })
-    .then(response => {
-      if (response.ok) {
-        setMessage("🎉 Podcast added successfully!");
-        setFormData({ title: "", description: "", audioUrl: "", duration: "", tags: "" });
-    
-        // Show confetti animation
-        setShowConfetti(true);
-        setTimeout(() => setShowConfetti(false), 3000); // Stop confetti after 3 seconds
-      } else {
-        setMessage("Failed to add podcast. Please try again.");
-      }
-    })
-    .catch(error => {
-      console.error("Error:", error);
-      setMessage("An error occurred while adding the podcast.");
-    });
+      .then(response => {
+        if (response.ok) {
+          setMessage("🎉 Podcast added successfully!");
+          setFormData({ title: "", description: "", audioUrl: "", duration: "", tags: "" });
+
+          // Show confetti animation
+          setShowConfetti(true);
+          setTimeout(() => setShowConfetti(false), 3000); // Stop confetti after 3 seconds
+        } else {
+          setMessage("Failed to add podcast. Please try again.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        setMessage("An error occurred while adding the podcast.");
+      });
 
     setLoading(false);
   };
 
+  
+
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center">
-      {showConfetti && <Confetti confettiSource={{x: width/2, y: 300}} width={width} height={height} />}
+      {showConfetti && <Confetti confettiSource={{ x: width / 2, y: 300 }} width={width} height={height} />}
 
       <div className="max-w-lg w-full bg-gray-800 p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold text-center mb-4">Add a New Podcast</h2>
