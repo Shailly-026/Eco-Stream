@@ -19,13 +19,13 @@ router.post("/add", (req, res) => {
 // Get all podcasts
 router.get('/getallpodcast', (req, res) => {
 
-  Podcast.find()  
-  .then((result) => {
-    res.status(200).json(result);
-  }).catch((err) => {
-    console.log(err);
-    res.status(500).json(err);
-  });
+  Podcast.find()
+    .then((result) => {
+      res.status(200).json(result);
+    }).catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 // Get a single podcast by ID
@@ -40,7 +40,7 @@ router.get('/getbyid/:id', (req, res) => {
       res.status(500).json(err);
     });
 });
-  
+
 
 // Update a podcast
 router.put('/updateid/:id', (req, res) => {
@@ -67,6 +67,40 @@ router.delete('/delete/:id', (req, res) => {
 
     });
 });
+
+// // Like a podcast
+// router.put("/like/:id", (req, res) => {
+//   Podcast.findById(req.params.id)
+//     .then((podcast) => {
+//       if (!podcast) return res.status(404).json({ message: "Podcast not found" });
+
+//       podcast.likes = (podcast.likes || 0) + 1;
+//       return podcast.save();
+//     })
+//     .then((updatedPodcast) => res.status(200).json(updatedPodcast))
+//     .catch((err) => {
+//       console.error("Error liking podcast:", err);
+//       res.status(500).json(err);
+//     });
+// });
+
+// // Add a comment to a podcast
+// router.post("/comment/:id", (req, res) => {
+//   const { userId, comment } = req.body;
+
+//   Podcast.findById(req.params.id)
+//     .then((podcast) => {
+//       if (!podcast) return res.status(404).json({ message: "Podcast not found" });
+
+//       podcast.comments.push({ userId, comment, date: new Date() });
+//       return podcast.save();
+//     })
+//     .then((updatedPodcast) => res.status(200).json(updatedPodcast))
+//     .catch((err) => {
+//       console.error("Error adding comment:", err);
+//       res.status(500).json(err);
+//     });
+// });
 
 
 module.exports = router;
