@@ -1,9 +1,13 @@
 'use client';
+import axios from "axios";
 import { useState } from "react";
 import Confetti from "react-confetti";
+import toast from "react-hot-toast";
 import { useWindowSize } from "react-use";
 
 export default function AddPodcast() {
+
+  const [audioFile, setAudioFile] = useState('');
 
   const [formData, setFormData] = useState({
     title: "",
@@ -30,7 +34,7 @@ export default function AddPodcast() {
     setMessage("");
 
     // Convert tags string into an array
-    const podcastData = { ...formData, tags: formData.tags.split(",") };
+    const podcastData = { ...formData, tags: formData.tags.split(","), audioUrl: audioFile };
 
     fetch("http://localhost:5000/podcast/add", {
       method: "POST",
@@ -57,7 +61,25 @@ export default function AddPodcast() {
     setLoading(false);
   };
 
-  
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) toast.error('No file selected');
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', 'ecostream');
+    formData.append('cloud_name', 'dssjgtsjl');
+
+    axios.post('http://api.cloudinary.com/v1_1/dssjgtsjl/auto/upload', formData)
+      .then((result) => {
+        toast.success('File Uploaded Successfully');
+        console.log(result.data.url);
+        setAudioFile(result.data.url);
+      }).catch((err) => {
+        console.log(err);
+        toast.error('File upload successfully');
+      });
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex justify-center items-center">
@@ -86,10 +108,8 @@ export default function AddPodcast() {
             required
           />
           <input
-            type="text"
-            name="audioUrl"
-            value={formData.audioUrl}
-            onChange={handleChange}
+            type="file"
+            onChange={handleFileUpload}
             placeholder="Audio File URL"
             className="w-full p-2 bg-gray-700 text-white rounded"
             required
