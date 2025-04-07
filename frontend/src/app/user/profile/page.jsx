@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import { UserCircle, Headphones, Clock, Calendar, Share2, Heart, BookmarkPlus, Settings } from 'lucide-react';
+import { useParams } from 'next/navigation';
 
 const UserProfile = () => {
   // Sample user data
@@ -27,7 +28,6 @@ const UserProfile = () => {
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-900 to-purple-700 p-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">Soundwave</h1>
           <button className="p-2 rounded-full bg-purple-800 hover:bg-purple-600">
             <Settings size={20} />
           </button>
