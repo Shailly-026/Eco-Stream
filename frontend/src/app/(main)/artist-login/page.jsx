@@ -19,6 +19,7 @@ const ArtistLogin = () => {
             console.log(values);
 
             //send values to backend
+            router.push('/');
         },
         validationSchema: ArtistLoginSchema
     })

@@ -42,7 +42,7 @@ const ArtistSignup = () => {
                 .then((result) => {
                     toast.success('User added Successfully');
                     resetForm();
-                    // router.push('/user-login');
+                    router.push('/user-login');
                 }).catch((err) => {
                     console.log(err);
                     toast.error('something went wrong');
@@ -203,12 +203,6 @@ const ArtistSignup = () => {
                                         >
                                             Password
                                         </label>
-                                        <a
-                                            className="inline-flex items-center gap-x-1 text-sm text-blue-600 decoration-2 hover:underline focus:outline-none focus:underline font-medium dark:text-blue-500"
-                                            href="../examples/html/recover-account.html"
-                                        >
-                                            Forgot password?
-                                        </a>
                                     </div>
                                     <div className="relative">
                                         <input
