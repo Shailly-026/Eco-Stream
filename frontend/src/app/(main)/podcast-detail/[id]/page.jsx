@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Play, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
@@ -7,6 +7,9 @@ import { useParams } from 'next/navigation';
 const DemonSlayerBanner = () => {
 
   const { id } = useParams();
+  const [podcastDetail, setPodcastDetail] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const fetchPodcastDetails = () => {
     fetch(`http://localhost:5000/podcast/getpodcast/${id}`)
@@ -17,12 +20,16 @@ const DemonSlayerBanner = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data); // Handle the podcast details as needed
+        setPodcastDetail(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching podcast details:", error);
+        setError("Failed to load podcasts.");
+        setLoading(false);
       });
-  }
+    };
+  
 
   useEffect(() => {
     fetchPodcastDetails();
