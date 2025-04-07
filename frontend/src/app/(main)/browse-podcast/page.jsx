@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 export default function BrowsePodcasts() {
@@ -169,12 +170,12 @@ export default function BrowsePodcasts() {
 
                   {/* Edit & Delete Buttons */}
                   <div className="mt-4 flex justify-between">
-                    <button
-                      onClick={() => handleEdit(podcast)}
+                    <Link
+                    href={`/podcast-detail/${podcast._id}`}
                       className="px-3 py-1 bg-blue-500 rounded hover:bg-blue-600"
                     >
-                      Edit
-                    </button>
+                      View
+                    </Link>
                     <button
                       onClick={() => handleDelete(podcast._id)}
                       className="px-3 py-1 bg-red-500 rounded hover:bg-red-600"
