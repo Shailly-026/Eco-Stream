@@ -1,6 +1,6 @@
 'use client';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 import * as Yup from 'Yup';
 
@@ -20,7 +20,7 @@ const ContactSchema = Yup.object().shape({
 const Contact = () => {
 
   const router = useRouter();
-  
+
   const ContactForm = useFormik({
     initialValues: {
       name: '',

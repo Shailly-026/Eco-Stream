@@ -24,7 +24,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="flex flex-col h- w-full bg-gray-900 text-gray-200">
+    <div className="flex flex-col  h- w-full bg-gray-900 text-gray-200">
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-900 to-purple-700 p-6">
         <div className="flex justify-between items-center">

@@ -11,7 +11,7 @@ const PodcastDetailCard = () => {
   };
 
   return (
-    <div className=" mid-h-screen rounded-lg overflow-hidden shadow-xl bg-black text-white border border-purple-600">
+    <div className=" h-full rounded-lg overflow-hidden shadow-xl bg-black text-white border border-purple-600">
       {/* Podcast Cover Image */}
       <div className="relative">
         <img 

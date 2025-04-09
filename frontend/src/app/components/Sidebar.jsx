@@ -19,7 +19,7 @@ const CollapsibleSidebar = ({ children }) => {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-100">
+    <div className="flex h-full bg-gray-100">
       <div
         className={`bg-gray-900 text-white transition-all duration-300 flex flex-col ${collapsed ? 'w-16' : 'w-64'
           }`}

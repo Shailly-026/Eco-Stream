@@ -7,6 +7,7 @@ const artisteRouter = require("./routers/artisteRouter")
 const podcastRouter = require("./routers/podcastRouter");
 const seriesRouter = require("./routers/seriesRouter");
 const userRouter = require("./routers/userRouter");
+const contactRouter = require("./routers/contactRouter")
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use("/artist", artisteRouter);
 app.use("/series", seriesRouter);
 app.use("/podcast", podcastRouter);
 app.use("/user", userRouter);
+app.use("/contact", contactRouter);
 
 
 

@@ -38,7 +38,7 @@ const ArtistSignup = () => {
 
             //send values to backend
 
-            axios.post('http://localhost:5000/artist/add', value)
+            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/artist/add`, value)
                 .then((result) => {
                     toast.success('User added Successfully');
                     resetForm();

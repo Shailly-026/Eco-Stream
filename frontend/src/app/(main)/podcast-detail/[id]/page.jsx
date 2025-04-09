@@ -12,7 +12,7 @@ const DemonSlayerBanner = () => {
   const [error, setError] = useState("");
 
   const fetchPodcastDetails = () => {
-    fetch(`http://localhost:5000/podcast/getpodcast/${id}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/podcast/getbyid/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to fetch podcast details");
@@ -20,6 +20,7 @@ const DemonSlayerBanner = () => {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         setPodcastDetail(data);
         setLoading(false);
       })
@@ -34,6 +35,9 @@ const DemonSlayerBanner = () => {
   useEffect(() => {
     fetchPodcastDetails();
   }, [])
+
+  if(podcastDetail===null)
+    return <p>Loading...</p>
   
 
   return (
