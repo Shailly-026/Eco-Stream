@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Play, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
+import { useFormik } from 'formik';
 
 const DemonSlayerBanner = () => {
 
@@ -11,16 +12,35 @@ const DemonSlayerBanner = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+
+  const podcastDetails = useFormik({
+    initialValues: {
+      title: "",
+      description: "",
+      audioUrl: "",
+      duration: "",
+      tags: "",
+    },
+    onSubmit: (values) => {
+      console.log(values);
+    },
+
+  });
+
   const fetchPodcastDetails = () => {
-    fetch(`http://localhost:5000/podcast/getpodcast/${id}`)
+    fetch(`http://localhost:5000/podcast/getbyid/${id}`)
       .then((response) => {
+        console.log(response.status);
+        
         if (!response.ok) {
           throw new Error("Failed to fetch podcast details");
         }
         return response.json();
       })
-      .then((data) => {
-        setPodcastDetail(data);
+      .then((result) => {
+        console.log(result);
+        
+        setPodcastDetail(result);
         setLoading(false);
       })
       .catch((error) => {
@@ -34,14 +54,17 @@ const DemonSlayerBanner = () => {
   useEffect(() => {
     fetchPodcastDetails();
   }, [])
-  
+
+  if(podcastDetail === null) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent z-10" />
       <div className="absolute inset-0">
-        <Image
+        <img
           src="/demon-slayer-banner.jpg"
           alt="Demon Slayer"
           layout="fill"
@@ -79,8 +102,8 @@ const DemonSlayerBanner = () => {
 
           {/* Description */}
           <div className="text-white text-sm">
-            <p>Demon Slayer Hashira training. Prepare for Muzan&apos;s attack!</p>
-            <p>Daily Hindi episodes.</p>
+            <p>{podcastDetail.title}</p>
+            <p>{podcastDetail.description}</p>
           </div>
 
           {/* Categories */}
@@ -97,7 +120,6 @@ const DemonSlayerBanner = () => {
             <button className="flex items-center space-x-2 bg-blue-500 hover:bg-blue-600 text-white px-4 py-3 rounded-md">
               <Play size={20} />
               <span className="font-medium">Watch First Episode</span>
-              <span className="text-xs ml-1">S1 E1</span>
             </button>
             <button className="flex items-center justify-center w-12 h-12 bg-gray-800 hover:bg-gray-700 rounded-md">
               <Plus size={24} />

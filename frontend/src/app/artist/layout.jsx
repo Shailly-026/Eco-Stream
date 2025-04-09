@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
         <CollapsibleSidebar>
             {children}
         </CollapsibleSidebar>
-        
+
     )
 }
 

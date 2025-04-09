@@ -6,7 +6,8 @@
      background-image: url('../../public/record.jpg'); 
 }
 .contact-bg{
-      background-image: url('../../public/bg.jpg.jpg'); 
+      background-image: url('../../public/bg.jpg'); 
+      background-size: cover;
 }
 
 .userLogin-bg{

@@ -1,6 +1,6 @@
 'use client';
 import { useFormik } from 'formik';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 import * as Yup from 'Yup';
 
@@ -49,13 +49,13 @@ const Contact = () => {
 
 
   return (
-    <div className='contact-bg' style={{ backgroundImage: `url('/bg.jpg.jpg' bg-cover)` }}>
+    <div className='contact-bg'>
       <div>
         <div className=" mx-w-xl mx-auto py-16 bg-gray-100 contact-bg" >
           <div className="container mx-auto ">
             <div className="w-1/3">
-              <h1 className="text-4xl font-bold text-white">Contact Us</h1>
-              <form onSubmit={ContactForm.handleSubmit} >
+              <h1 className="text-4xl font-bold text-white p-8">Contact Us</h1>
+              <form onSubmit={ContactForm.handleSubmit} className='p-8'>
                 <div className="mt-6">
                   <input type="text" onChange={ContactForm.handleChange} value={ContactForm.values.name} className="w-full py-3 px-4 border border-gray-300 rounded-md" placeholder="Name" id='name' name="Name" />
                 </div>
