@@ -15,11 +15,6 @@ const UserProfile = () => {
       { id: 2, title: "Crime Junkie", publisher: "AudioChuck", cover: "/api/placeholder/60/60" },
       { id: 3, title: "Mind Matters", publisher: "Psychology Today", cover: "/api/placeholder/60/60" }
     ],
-    playlists: [
-      { id: 1, title: "Morning Commute", episodeCount: 12 },
-      { id: 2, title: "Workout Mix", episodeCount: 8 },
-      { id: 3, title: "Evening Wind Down", episodeCount: 15 }
-    ]
   };
 
   return (
@@ -27,7 +22,7 @@ const UserProfile = () => {
       {/* Header */}
       <header className="bg-gradient-to-r from-purple-900 to-purple-700 p-6">
         <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">Soundwave</h1>
+          <h1 className="text-xl font-bold">EcoStream</h1>
           <button className="p-2 rounded-full bg-purple-800 hover:bg-purple-600">
             <Settings size={20} />
           </button>
@@ -97,11 +92,11 @@ const UserProfile = () => {
 
       {/* Playlists */}
       <div className="px-6 mt-8 pb-[100px]">
-        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+        <h3 className="text-lg font-semibold mb-3 flex items-center gap-2" >
           <BookmarkPlus size={18} className="text-purple-400" />
           My Playlists
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {user.playlists.map(playlist => (
             <div key={playlist.id} className="bg-gray-800 p-4 rounded-lg hover:bg-gray-700">
               <div className="flex justify-between items-center">
@@ -114,7 +109,7 @@ const UserProfile = () => {
               </div>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       {/* Footer Navigation */}
