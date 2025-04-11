@@ -1,5 +1,5 @@
-import React from 'react'
-import CollapsibleSidebar from '../../components/Sidebar'
+import React from 'react';
+import CollapsibleSidebar from '../components/Sidebar';
 
 const Layout = ({ children }) => {
     return (

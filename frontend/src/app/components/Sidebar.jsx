@@ -34,19 +34,9 @@ const CollapsibleSidebar = ({ children }) => {
           </button>
         </div>
         <>
-          {/* Account Dropdown */}
+          
           <div className="hs-dropdown [--strategy:absolute] [--auto-close:inside] relative w-full inline-flex">
-            <button
-              id="hs-sidebar-header-example-with-dropdown"
-              type="button"
-              className="w-full inline-flex shrink-0 items-center gap-x-2 p-2 text-start text-sm text-gray-800 rounded-md hover:bg-gray-800 focus:outline-hidden focus:bg-gray-800 dark:text-neutral-200 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-label="Dropdown"
-            >
-             
-            </button>
-            {/* Account Dropdown */}
+
             <div
               className="hs-dropdown-menu hs-dropdown-open:opacity-100 w-60 transition-[opacity,margin] duration opacity-0 hidden z-20 bg-white border border-gray-200 rounded-lg shadow-lg dark:bg-neutral-900 dark:border-neutral-700"
               role="menu"

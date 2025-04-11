@@ -4,19 +4,19 @@ import Image from 'next/image';
 
 const BrowsePage = () => {
   const categories = [
-    { name: 'Sparks', icon: 'play-circle' },
-    { name: 'News', icon: 'newspaper' },
-    { name: 'TV', icon: 'tv' },
-    { name: 'Movies', icon: 'film' },
-    { name: 'Sports', icon: 'trophy' }
+    { name: 'Entertainment', icon: 'play-circle' },
+    { name: 'Education', icon: 'newspaper' },
+    { name: 'Lifestyle $ Health', icon: 'tv' },
+    { name: 'Travel $ Adventure', icon: 'film' },
+    { name: 'Gaming $ Hobbies', icon: 'trophy' }
   ];
 
   const studios = [
-    { name: 'Hotstar Specials', logo: '/logos/hotstar-specials.png' },
-    { name: 'Disney', logo: '/logos/disney.png' },
-    { name: 'HBO', logo: '/logos/hbo.png' },
-    { name: 'Peacock', logo: '/logos/peacock.png' },
-    { name: 'Paramount+', logo: '/logos/paramount.png' }
+    { name: 'Storytelling $ Drama', logo: '/logos/hotstar-specials.png' },
+    { name: 'Talk $ Interviews', logo: '/logos/disney.png' },
+    { name: 'Mind $ soul', logo: '/logos/hbo.png' },
+    { name: 'Music $ Vibe', logo: '/logos/peacock.png' },
+    { name: 'Mental Wellness', logo: '/logos/paramount.png' }
   ];
 
   const languages = [
@@ -52,9 +52,9 @@ const BrowsePage = () => {
         </div>
 
         {/* Studios Section */}
-        <h2 className="text-2xl font-bold mb-4">Studios</h2>
+        <h2 className="text-2xl font-bold mb-4">EcostreamSpecial</h2>
         <div className="grid grid-cols-5 gap-3 mb-12">
-          {studios.map((studio, index) => (
+          {studios.map((studios, index) => (
             <div 
               key={index} 
               className="bg-gray-900 rounded-lg aspect-[4/3] cursor-pointer hover:opacity-90 transition flex items-center justify-center p-4"
@@ -62,7 +62,7 @@ const BrowsePage = () => {
               <div className="relative w-full h-full">
                 <div className="flex items-center justify-center h-full">
                   {/* In production, use next/image with actual studio logos */}
-                  <div className="text-center text-xl font-bold text-white">{studio.name}</div>
+                  <div className="text-center text-xl font-bold text-white">{studios.name}</div>
                 </div>
               </div>
             </div>
