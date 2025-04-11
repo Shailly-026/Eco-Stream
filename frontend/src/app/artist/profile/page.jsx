@@ -62,7 +62,7 @@ const ArtistProfile = () => {
       {/* Gradient Header with Hero Section */}
       <div className="bg-gradient-to-br from-purple-900 via-black to-purple-800 pt-6 pb-10 px-6 rounded-b-3xl">
         <div className="flex justify-between items-center mb-10">
-          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-200">SoundWave</h1>
+          <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-purple-200">EcoStream</h1>
           <button className="p-2 rounded-full bg-purple-900/50 backdrop-blur-sm hover:bg-purple-800">
             <Share2 size={20} className="text-purple-200" />
           </button>

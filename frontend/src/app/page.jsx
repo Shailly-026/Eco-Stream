@@ -179,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-black">
+      <section id="testimonials" className="py-20 bg-black">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             What Our <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Users</span> Say
@@ -416,9 +416,9 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-lg mb-4">Product</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Features</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Pricing</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Testimonials</a></li>
+                <li><a href="#features" className="text-gray-400 hover:text-purple-400">Features</a></li>
+                <li><a href="#pricing" className="text-gray-400 hover:text-purple-400">Pricing</a></li>
+                <li><a href="#testimonials" className="text-gray-400 hover:text-purple-400">Testimonials</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">FAQ</a></li>
               </ul>
             </div>
@@ -426,11 +426,8 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-lg mb-4">Company</h4>
               <ul className="space-y-2">
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">About Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Careers</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Blog</a></li>
                 <li><a href="#" className="text-gray-400 hover:text"></a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">About Us</a></li>
+                <li><a href="/about" className="text-gray-400 hover:text-purple-400">About Us</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Careers</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Blog</a></li>
               </ul>
@@ -443,8 +440,8 @@ export default function Home() {
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Voice Commands</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Privacy Policy</a></li>
                 <li><a href="#" className="text-gray-400 hover:text-purple-400">Terms of Service</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Support</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-purple-400">Contact</a></li>
+                <li><a href="/support" className="text-gray-400 hover:text-purple-400">Support</a></li>
+                <li><a href="/contact" className="text-gray-400 hover:text-purple-400">Contact</a></li>
               </ul>
             </div>
           </div>

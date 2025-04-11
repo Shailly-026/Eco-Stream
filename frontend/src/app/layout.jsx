@@ -1,13 +1,6 @@
 import React, { Profiler } from 'react'
-
-
 import "./globals.css";
 import { Toaster } from 'react-hot-toast';
-
-
-
-
-
 
 const RootLayout = ({ children }) => {
   return (
@@ -15,7 +8,6 @@ const RootLayout = ({ children }) => {
       <body>
         <Toaster />
         {children}
-
       </body>
     </html>
   );
