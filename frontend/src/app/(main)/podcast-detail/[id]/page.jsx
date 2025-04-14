@@ -91,9 +91,9 @@ const PodcastDetailBanner = () => {
                 {tag}
               </span>
             ))}
-            {podcastDetail.Genere?.map((genre, i) => (
+            {podcastDetail.category?.map((category, i) => (
               <span key={i} className="px-3 py-1 bg-purple-950/30 border border-purple-700 text-purple-300 rounded-full backdrop-blur-sm hover:bg-purple-800/40 transition">
-                {genre}
+                {category}
               </span>
             ))}
           </div>
