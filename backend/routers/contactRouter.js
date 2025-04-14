@@ -1,19 +1,17 @@
 const express = require("express");
-const contact = require("../models/contactModel");
+const router = express.Router();
 
- const contact = express.Router();
- // create a new contact
- Router.post("/add",(req,res)=>{
+const Model = require("../models/contactModel");
+// create a new contact
+router.post("/add", (req, res) => {
     console.log(req.body);
 
-    new Router(req.body).save()   // to save in database usingg mongoose
-    .then((result) => {
-        res.status(200).json(result);
-      }).catch((err) => {
-        console.log(err);
-        res.status(500).json(err);
-      });
-
-    
- })
- module.exports = router;
+    new Model(req.body).save()   // to save in database usingg mongoose
+        .then((result) => {
+            res.status(200).json(result);
+        }).catch((err) => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+})
+module.exports = router;

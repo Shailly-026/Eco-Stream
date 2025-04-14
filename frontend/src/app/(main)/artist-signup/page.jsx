@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import toast from 'react-hot-toast';
-import * as Yup from 'Yup';
+import * as Yup from 'yup';
 
 const ArtistSignupSchema = Yup.object().shape({
     name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),

@@ -20,7 +20,7 @@ const ContactSchema = Yup.object().shape({
 const Contact = () => {
 
   const router = useRouter();
-  
+
   const ContactForm = useFormik({
     initialValues: {
       name: '',
