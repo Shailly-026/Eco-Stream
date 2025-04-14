@@ -39,7 +39,7 @@ const ForgetPasswordCard = () => {
 
     // Redirect to login after 2 seconds
     setTimeout(() => {
-      router.push('/login');
+      router.push('/artist-login');
     }, 2000);
   };
 
@@ -109,7 +109,7 @@ const ForgetPasswordCard = () => {
         {success && <p className="text-sm text-green-400 text-center">{success} Redirecting...</p>}
 
         <div className="text-center mt-4">
-          <a href="/user-login" className="text-sm text-purple-400 hover:underline">
+          <a href="/artist-login" className="text-sm text-purple-400 hover:underline">
             Back to login
           </a>
         </div>

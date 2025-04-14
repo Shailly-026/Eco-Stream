@@ -15,7 +15,7 @@ const podcastSchema = new Schema(
     language: { type: String, default: "English" }, // Podcast language
     transcript: { type: String }, // Optional transcript of the podcast
     releaseDate: { type: Date, default: Date.now },
-    listens: { type: Number, default: 0 }, // Track how many times it's played
+    listens: { type: Number, default: 0 }, // Track how many times it's played/
     likes: { type: Number, default: 0 }, // Count of likes
     comments: [
       {
