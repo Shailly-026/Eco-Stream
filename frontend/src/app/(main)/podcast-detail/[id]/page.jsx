@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { Play, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { usePlayer } from '../../../../context/PlayerContext';
+import { usePlaylist } from '../../../../context/PlaylistContext';
 
 const PodcastDetailBanner = () => {
   const { id } = useParams();
@@ -13,6 +13,7 @@ const PodcastDetailBanner = () => {
   const [error, setError] = useState(null);
 
   const { play, pause, loadPodcast, isPlaying, currentPodcast } = usePlayer();
+  const { addToPlaylist } = usePlaylist();
 
   useEffect(() => {
     fetchPodcastDetail();
@@ -35,24 +36,16 @@ const PodcastDetailBanner = () => {
   const handleAddToPlaylist = () => {
     if (!podcastDetail) return;
 
-    const payload = {
-      podcastId: id,
-      artistId: podcastDetail.artistId,
-    };
+    addToPlaylist({
+      id,
+      title: podcastDetail.title,
+      artist: podcastDetail.artist,
+      duration: podcastDetail.duration,
+      audioUrl: podcastDetail.audioUrl,
+      coverImageUrl: podcastDetail.coverImageUrl,
+    });
 
-    fetch('http://localhost:5000/user/playlist', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
-    })
-      .then((response) => {
-        if (!response.ok) throw new Error('Failed to add to playlist');
-        alert('Podcast added to playlist!');
-      })
-      .catch((err) => {
-        console.error(err);
-        alert('Failed to add podcast to playlist.');
-      });
+    alert('Podcast added to playlist!');
   };
 
   const handlePlayPodcast = () => {
@@ -86,7 +79,7 @@ const PodcastDetailBanner = () => {
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden">
-      <div className="absolute inset-0 z-0 left-[40vw]">
+      <div className="absolute w-[30px] inset-0 z-0 left-[40vw]">
         <img
           src={podcastDetail.coverImageUrl || '/default-banner.jpg'}
           alt={podcastDetail.title}

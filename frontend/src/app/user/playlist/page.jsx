@@ -5,7 +5,7 @@ const Playlist = () => {
   const { playlist, removeFromPlaylist, clearPlaylist } = usePlaylist();
 
   return (
-    <div className="p-6 bg-black text-white">
+    <div className="p-6 bg-black w-full h-full text-white">
       <h1 className="text-2xl font-bold mb-4">Your Playlist</h1>
       {playlist.length === 0 ? (
         <p className="text-gray-400">Your playlist is empty.</p>
