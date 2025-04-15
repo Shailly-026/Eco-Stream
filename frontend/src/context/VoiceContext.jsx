@@ -65,11 +65,11 @@ const pageDetails = [
   },
   {
     pageName: 'signup',
-    pagePath: '/user-signup'
+    pagePath: '/signup'
   },
   {
     pageName: 'login',
-    pagePath: '/user-login'
+    pagePath: '/login'
   },
   {
     pageName: 'contact',
@@ -84,27 +84,27 @@ const pageDetails = [
     pagePath: '/resetPassword'
   },
   {
-    pageName: 'support',
-    pagePath: '/support'
+    pageName: 'productView',
+    pagePath: '/productView'
   },
   {
-    pageName: 'playlist',
-    pagePath: '/user/playlist'
+    pageName: 'sellerdashboard',
+    pagePath: '/seller/sellerdashboard'
   },
   {
-    pageName: 'pricing',
-    pagePath: '/#Features'
+    pageName: 'addProduct',
+    pagePath: '/seller/addProduct'
   },
   {
-    pageName: 'How-it-works',
-    pagePath: '/#How-it-works'
+    pageName: 'manageProduct',
+    pagePath: '/seller/manageProduct'
   },
   {
-    pageName: 'Testmonials',
-    pagePath: '/#Testmonials'
+    pageName: 'sellersignup',
+    pagePath: '/seller/sellersignup'
   },
   {
-    pageName: '',
+    pageName: 'admindashboard',
     pagePath: '/admin/admindashboard'
   },
   {
@@ -126,7 +126,7 @@ const pageDetails = [
   {
     pageName: 'cheakout',
     pagePath: '/user/cheakout'
-  }
+  },
 ]
 
 const speech = new SpeechSynthesisUtterance();
@@ -182,10 +182,10 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'I want to listen podcast',
+      command: 'I want to buy something',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('browse-all')
+        voicePageNavigator('productView')
       }
     },
     {
@@ -232,7 +232,7 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'open sign up page',
+      command: 'open signup page',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
         voicePageNavigator('signup')
@@ -267,45 +267,45 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'open settings',
+      command: 'open manage product',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('user/Settings-Bar')
+        voicePageNavigator('manageProduct')
       }
     },
     {
-      command: 'open user signup',
+      command: 'open seller dashboard',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('user signup')
+        voicePageNavigator('sellerdashboard')
       }
     },
     {
-      command: 'open artist sign up',
+      command: 'open seller sign up',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('artistsignup')
+        voicePageNavigator('sellersignup')
       }
     },
     {
       command: 'open user profile',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('user profile')
+        voicePageNavigator('profile')
       }
     },
     {
-      command: 'open artist profile',
+      command: 'open cart page',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('artist profile')
+        voicePageNavigator('MyCart')
       }
     },
     {
-      command: 'show me podcast',
+      command: 'show me products',
       callback: (pageName) => {
-        router.push('/browse podcast');
-        voiceResponse('Showing all podcast');
+        router.push('/productView');
+        voiceResponse('Showing all products');
       }
     },
     {
@@ -385,11 +385,9 @@ export const VoiceProvider = ({ children }) => {
 
 
   useEffect(() => {
-    
-    console.log(finalTranscript);
-    SpeechRecognition.startListening({ continuous: true });
-    if (finalTranscript === 'tart listening') {
+    if (finalTranscript === 'start listening') {
       voiceResponse('I am listening');
+      SpeechRecognition.startListening({ continuous: true });
       triggerModal('Voice Assistant', 'I am listening');
     }
     if (finalTranscript.includes('top listening')) {
@@ -397,12 +395,12 @@ export const VoiceProvider = ({ children }) => {
       SpeechRecognition.stopListening();
       triggerModal('Voice Assistant', 'Good Bye! Have a nice day!', false, <IconMicrophoneOff size={50} />);
     }
-    if (finalTranscript.includes('hello eco stream')) {
+    if (finalTranscript.includes('hello box')) {
       resetTranscript();
       voiceResponse('Hello! How can I help you today?');
       SpeechRecognition.startListening({ continuous: true });
     }
-    if (finalTranscript.includes('goodbye ecostream')) {
+    if (finalTranscript.includes('goodbye box')) {
       voiceResponse('Goodbye! Have a nice day!');
       SpeechRecognition.stopListening();
       triggerModal('Voice Assistant', 'Good bye! have a nice Day', false, <IconMicrophoneOff size={50} />);
@@ -494,8 +492,8 @@ export const VoiceProvider = ({ children }) => {
     const synth = window.speechSynthesis;
     const voices = synth.getVoices();
     setVoices(voices);
-    console.log(voices);
-    speech.voice = voices[5];
+    // console.log(voices);
+    speech.voice = voices[12];
   }
 
   const checkExistenceInTranscript = (commandArray) => {
@@ -517,7 +515,7 @@ export const VoiceProvider = ({ children }) => {
       checkExistenceInTranscript
     }}>
 
-      <div className='bg-[#8C52FF] text-center'>
+      <div className='bg-[#8C52FF] text-white text-center'>
         <button className='floating-mic ' onClick={() => {
           if (listening) {
             SpeechRecognition.stopListening();
