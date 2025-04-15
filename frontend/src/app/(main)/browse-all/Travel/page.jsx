@@ -12,7 +12,7 @@ const Travel = () => {
         <div className="min-h-screen bg-black text-white">
         {/* travel Section */}
         <h2 className="text-2xl font-bold mb-4">Travel $ Adventure</h2>
-        <div className="grid grid-cols-5 gap-3 mb-12">
+        <div className="grid grid-cols-3 gap-3 mb-12">
             {categories.map((category, index) => (
                 <div
                     key={index}

@@ -11,7 +11,7 @@ const Mentalwellness = () => {
     <div className="min-h-screen bg-black text-white">
         {/* mental wellness Section */}
         <h2 className="text-2xl font-bold mb-4">Mental wellness</h2>
-        <div className="grid grid-cols-5 gap-3 mb-12">
+        <div className="grid grid-cols-3 gap-3 mb-12">
             {studios.map((studios, index) => (
                 <div
                     key={index}
