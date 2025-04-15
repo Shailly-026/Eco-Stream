@@ -6,16 +6,16 @@ const BrowsePage = () => {
   const categories = [
     { name: 'Entertainment', icon: 'play-circle' },
     { name: 'Education', icon: 'newspaper' },
-    { name: 'Lifestyle $ Health', icon: 'tv' },
-    { name: 'Travel $ Adventure', icon: 'film' },
-    { name: 'Gaming $ Hobbies', icon: 'trophy' }
+    { name: 'Lifestyle & Health', icon: 'tv' },
+    { name: 'Travel & Adventure', icon: 'film' },
+    { name: 'Gaming & Hobbies', icon: 'trophy' }
   ];
 
   const studios = [
-    { name: 'Storytelling $ Drama', logo: '/logos/hotstar-specials.png' },
-    { name: 'Talk $ Interviews', logo: '/logos/disney.png' },
-    { name: 'Mind $ soul', logo: '/logos/hbo.png' },
-    { name: 'Music $ Vibe', logo: '/logos/peacock.png' },
+    { name: 'Storytelling & Drama', logo: '/logos/hotstar-specials.png' },
+    { name: 'Talk & Interviews', logo: '/logos/disney.png' },
+    { name: 'Mind & soul', logo: '/logos/hbo.png' },
+    { name: 'Music & Vibe', logo: '/logos/peacock.png' },
     { name: 'Mental Wellness', logo: '/logos/paramount.png' }
   ];
 
