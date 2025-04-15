@@ -29,7 +29,7 @@ const ArtistSignup = () => {
             confirmPassword: ''
         },
         onSubmit: (value, { resetForm, setSubmitting }) => {
-            axios.post('http://localhost:5000/artist/add', value)
+            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/artist/add`, value)
                 .then(() => {
                     toast.success('User added successfully');
                     resetForm();

@@ -31,6 +31,7 @@ const ForgetPasswordCard = () => {
     console.log("Updating password for:", email, newPassword);
     setError('');
     setSuccess("Password updated successfully!");
+    router.push('/user-login');
 
     // Reset fields
     setEmail('');

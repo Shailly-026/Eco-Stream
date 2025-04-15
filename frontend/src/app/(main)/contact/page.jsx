@@ -2,7 +2,7 @@
 import { useFormik } from 'formik';
 import { useRouter } from 'next/navigation';
 import React from 'react'
-import * as Yup from 'Yup';
+import * as Yup from 'yup';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -36,7 +36,6 @@ const Contact = () => {
         .then((result) => {
           toast.success('Request has been submitted Successfully');
           resetForm();
-          // router.push('/user-login');
         }).catch((err) => {
           console.log(err);
           toast.error('something went wrong');
@@ -45,8 +44,6 @@ const Contact = () => {
     },
     validationSchema: ContactSchema
   })
-
-
 
   return (
     <div className='contact-bg'>

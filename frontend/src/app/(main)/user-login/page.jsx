@@ -2,6 +2,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { useRouter } from 'next/navigation';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -9,6 +12,9 @@ const LoginSchema = Yup.object().shape({
 });
 
 const Login = () => {
+
+  const router = useRouter();
+
   const loginForm = useFormik({
     initialValues: {
       email: '',
@@ -16,7 +22,17 @@ const Login = () => {
     },
     validationSchema: LoginSchema,
     onSubmit: (values) => {
-      console.log(values);
+
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/authenticate`, values)
+      .then((result) => {
+        toast.success('Login Successful');
+        localStorage.setItem('user', result.data.token);
+        router.push('/user/browse-podacst');
+      }).catch((err) => {
+        toast.error('Invalid Credentials');
+        console.log(err);
+      });
+      console.log('Login Submitted:',values);
       // backend call here
     },
   });
