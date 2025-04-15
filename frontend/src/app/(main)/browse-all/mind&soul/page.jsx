@@ -12,7 +12,7 @@ const Mind$soul = () => {
     <div className="min-h-screen bg-black text-white">
         {/* mind$soul Section */}
         <h2 className="text-2xl font-bold mb-4">Mind & Soul</h2>
-        <div className="grid grid-cols-5 gap-3 mb-12">
+        <div className="grid grid-cols-3 gap-3 mb-12">
             {studios.map((studios, index) => (
                 <div
                     key={index}

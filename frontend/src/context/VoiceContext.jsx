@@ -65,11 +65,11 @@ const pageDetails = [
   },
   {
     pageName: 'signup',
-    pagePath: '/user-signup'
+    pagePath: '/signup'
   },
   {
     pageName: 'login',
-    pagePath: '/user-login'
+    pagePath: '/login'
   },
   {
     pageName: 'contact',
@@ -515,7 +515,7 @@ export const VoiceProvider = ({ children }) => {
       checkExistenceInTranscript
     }}>
 
-      <div className='bg-[#8C52FF] text-center'>
+      <div className='bg-[#8C52FF] text-white text-center'>
         <button className='floating-mic ' onClick={() => {
           if (listening) {
             SpeechRecognition.stopListening();
