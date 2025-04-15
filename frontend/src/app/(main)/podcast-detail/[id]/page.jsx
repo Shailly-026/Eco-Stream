@@ -4,29 +4,33 @@ import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Play, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
+import { usePlayer } from '../../../../context/PlayerContext';
 
 const PodcastDetailBanner = () => {
   const { id } = useParams();
   const [podcastDetail, setPodcastDetail] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
+
+  const { play, pause, loadPodcast, isPlaying, currentPodcast } = usePlayer();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/podcast/getbyid/${id}`)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch podcast details");
-        return res.json();
-      })
-      .then((data) => {
-        setPodcastDetail(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Fetch error:", err);
-        setError("Failed to load podcast.");
-        setLoading(false);
-      });
+    fetchPodcastDetail();
   }, [id]);
+
+  const fetchPodcastDetail = () => {
+    fetch(`http://localhost:5000/podcast/getbyid/${id}`)
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to fetch podcast details');
+        return response.json();
+      })
+      .then((data) => setPodcastDetail(data))
+      .catch((err) => {
+        console.error('Fetch error:', err);
+        setError('Failed to load podcast.');
+      })
+      .finally(() => setLoading(false));
+  };
 
   const handleAddToPlaylist = () => {
     if (!podcastDetail) return;
@@ -36,34 +40,58 @@ const PodcastDetailBanner = () => {
       artistId: podcastDetail.artistId,
     };
 
-    fetch('http://localhost:5000/playlist/add', {
+    fetch('http://localhost:5000/user/playlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     })
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to add to playlist");
-        return res.json();
+      .then((response) => {
+        if (!response.ok) throw new Error('Failed to add to playlist');
+        alert('Podcast added to playlist!');
       })
-      .then(() => alert("Podcast added to playlist!"))
       .catch((err) => {
         console.error(err);
-        alert("Failed to add podcast to playlist.");
+        alert('Failed to add podcast to playlist.');
       });
   };
 
-  if (loading) return <div className="text-purple-300 text-center p-6 bg-black">Loading...</div>;
-  if (error) return <div className="text-red-400 text-center p-6 bg-black">{error}</div>;
+  const handlePlayPodcast = () => {
+    if (currentPodcast?.id === id && isPlaying) {
+      pause();
+    } else {
+      loadPodcast({
+        id,
+        title: podcastDetail.title,
+        duration: podcastDetail.duration,
+        audioUrl: podcastDetail.audioUrl,
+        coverImageUrl: podcastDetail.coverImageUrl,
+        artist: podcastDetail.artist,
+      });
+      play();
+    }
+  };
+
+  if (loading)
+    return (
+      <div className="text-purple-300 text-center p-6 bg-black">
+        <div className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  if (error)
+    return (
+      <div className="text-red-400 text-center p-6 bg-black">
+        {error}
+      </div>
+    );
 
   return (
     <div className="relative w-full min-h-screen bg-black overflow-hidden">
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 left-[40vw]">
         <img
-          src={podcastDetail.imageUrl || '/default-banner.jpg'}
+          src={podcastDetail.coverImageUrl || '/default-banner.jpg'}
           alt={podcastDetail.title}
-          className="w-full h-full object-cover opacity-40"
+          className="w-50 h-[350px] object-fill"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/40 to-black z-10" />
       </div>
 
       <div className="relative z-20 p-6 md:p-12 flex flex-col justify-end min-h-screen">
@@ -87,25 +115,35 @@ const PodcastDetailBanner = () => {
 
           <div className="flex flex-wrap gap-2 text-xs">
             {podcastDetail.tags?.map((tag, i) => (
-              <span key={i} className="px-3 py-1 bg-purple-800/50 text-purple-200 rounded-full backdrop-blur-sm hover:bg-purple-700/50 transition">
+              <span
+                key={i}
+                className="px-3 py-1 bg-purple-800/50 text-purple-200 rounded-full backdrop-blur-sm hover:bg-purple-700/50 transition"
+              >
                 {tag}
               </span>
             ))}
-            {podcastDetail.category?.map((category, i) => (
-              <span key={i} className="px-3 py-1 bg-purple-950/30 border border-purple-700 text-purple-300 rounded-full backdrop-blur-sm hover:bg-purple-800/40 transition">
+
+            {(Array.isArray(podcastDetail.category)
+              ? podcastDetail.category
+              : [podcastDetail.category]
+            ).map((category, i) => (
+              <span
+                key={i}
+                className="px-3 py-1 bg-purple-950/30 border border-purple-700 text-purple-300 rounded-full backdrop-blur-sm hover:bg-purple-800/40 transition"
+              >
                 {category}
               </span>
             ))}
           </div>
 
           <div className="flex gap-4 pt-4">
-            <Link
-              href="/podcast-player"
+            <button
+              onClick={handlePlayPodcast}
               className="flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-purple-700 to-purple-900 text-white shadow-md hover:shadow-purple-800/50 hover:from-purple-600 hover:to-purple-800 transition-all"
             >
               <Play size={20} />
-              <span>Play Podcast</span>
-            </Link>
+              <span>{isPlaying && currentPodcast?.id === id ? 'Pause Podcast' : 'Play Podcast'}</span>
+            </button>
             <button
               onClick={handleAddToPlaylist}
               className="flex items-center justify-center w-12 h-12 rounded-lg bg-black bg-opacity-50 border border-purple-700 text-purple-300 hover:bg-purple-800/20 hover:scale-105 transition-all"
@@ -114,15 +152,14 @@ const PodcastDetailBanner = () => {
             </button>
           </div>
 
-          <div className="mt-6 p-1 rounded-xl bg-gradient-to-r from-purple-900 to-purple-800/70 shadow-inner shadow-purple-900/30">
-            <audio
-              controls
-              className="w-full rounded-md bg-black/80 text-purple-200"
-            >
-              <source src={podcastDetail.audioUrl} type="audio/mpeg" />
-              Your browser does not support the audio element.
-            </audio>
-          </div>
+          {podcastDetail.transcript && (
+            <div className="mt-6">
+              <h3 className="text-xl font-semibold text-purple-300 mb-2">Transcript</h3>
+              <p className="text-sm text-gray-300 whitespace-pre-wrap bg-black/40 p-4 rounded-lg border border-purple-800">
+                {podcastDetail.transcript}
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </div>
