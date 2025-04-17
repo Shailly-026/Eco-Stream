@@ -17,6 +17,7 @@ const podcastSchema = new Schema(
     releaseDate: { type: Date, default: Date.now },
     listens: { type: Number, default: 0 }, // Track how many times it's played/
     likes: { type: Number, default: 0 }, // Count of likes
+    likedBy: { type: Array, default: [] }, // Array of user IDs who liked the podcast
     comments: [
       {
         comment: { type: String },

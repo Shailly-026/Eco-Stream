@@ -32,7 +32,7 @@ const Signup = () => {
     },
     onSubmit: (values, { resetForm, setSubmitting }) => {
       axios
-        .post('http://localhost:5000/user/add', values)
+        .post(`${process.env.NEXT_PUBLIC_API_URL}/user/add`, values)
         .then(() => {
           toast.success('Account created!');
           resetForm();

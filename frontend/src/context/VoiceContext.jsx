@@ -6,6 +6,7 @@ import { IconArrowDown, IconArrowDownBar, IconArrowUp, IconArrowUpBar, IconMicro
 import { useRouter } from 'next/navigation';
 import { FaMicrophone } from "react-icons/fa6";
 import { AnimatePresence, motion } from 'framer-motion';
+import About from '@/app/(main)/about/page';
 
 const InfoModal = ({ icon, title, description, showModal, setShowModal, centered = false, duration = 2000 }) => {
 
@@ -14,7 +15,7 @@ const InfoModal = ({ icon, title, description, showModal, setShowModal, centered
       const timer = setTimeout(() => {
         setShowModal(false);
       }, duration);
-      return () => clearTimeout(timer);
+      return () => clearTimeout(timer);                       
     }
   }, [showModal, duration]);
 
@@ -50,8 +51,10 @@ const InstructionModal = ({ setShowModal }) => {
       </button>
       <h3 className='text-center text-3xl font-bold mb-4'>Basic Instructions</h3>
       <p className='text-lg mb-2'>{`1. Say "Open <page name> page" to open navigate to any page`}</p>
-      <p className='text-lg mb-2'>{`2. Say "I want to create an account" to navigate to the signup page`}</p>
-      <p className='text-lg mb-2'>{`3. Say "I want to login" to navigate to the login page`}</p>
+      <p className='text-lg mb-2'>{`2. Say "I want to create user account" to navigate to the user signup page`}</p>
+      <p className='text-lg mb-2'>{`2. Say "I want to create artist account" to navigate to the artist signup page`}</p>
+      <p className='text-lg mb-2'>{`3. Say "I want to login as a user" to navigate to the user login page`}</p>
+      <p className='text-lg mb-2'>{`3. Say "I want to login as a artist" to navigate to the artist login page`}</p>
       <p className='text-lg mb-2'>{`4. Say "Move down" to scroll down and vice-versa`}</p>
       <p className='text-lg mb-2'>{`5. Say "Move to bottom" to scroll to bottom of page and vice-versa`}</p>
     </motion.div>
@@ -64,12 +67,20 @@ const pageDetails = [
     pagePath: '/'
   },
   {
-    pageName: 'signup',
-    pagePath: '/signup'
+    pageName: 'user signup',
+    pagePath: '/user-signup'
+  },
+  {
+    pageName: 'artist signup',
+    pagePath: '/artist-signup'
+  },
+  {
+    pageName: 'artist signup',
+    pagePath: '/artist-signup'
   },
   {
     pageName: 'login',
-    pagePath: '/login'
+    pagePath: '/user-login'
   },
   {
     pageName: 'contact',
@@ -81,51 +92,43 @@ const pageDetails = [
   },
   {
     pageName: 'resetPassword',
-    pagePath: '/resetPassword'
+    pagePath: '/user-login/resetPassword'
   },
   {
-    pageName: 'productView',
-    pagePath: '/productView'
+    pageName: 'browse podcast',
+    pagePath: '/browse-podcast'
   },
   {
-    pageName: 'sellerdashboard',
-    pagePath: '/seller/sellerdashboard'
+    pageName: 'podcast details',
+    pagePath: '/podcast-detail'
   },
   {
-    pageName: 'addProduct',
-    pagePath: '/seller/addProduct'
+    pageName: 'podcast player',
+    pagePath: '/podcast-player'
   },
   {
-    pageName: 'manageProduct',
-    pagePath: '/seller/manageProduct'
+    pageName: 'add podcast',
+    pagePath: '/artist/add-podcast'
   },
   {
-    pageName: 'sellersignup',
-    pagePath: '/seller/sellersignup'
+    pageName: 'playlist',
+    pagePath: '/user/playlist'
   },
   {
-    pageName: 'admindashboard',
-    pagePath: '/admin/admindashboard'
+    pageName: 'artist profile',
+    pagePath: '/artist/profile'
   },
   {
-    pageName: 'manageuser',
-    pagePath: '/admin/manageuser'
-  },
-  {
-    pageName: 'adminprofile',
-    pagePath: '/admin/adminprofile'
-  },
-  {
-    pageName: 'profile',
+    pageName: 'user profile',
     pagePath: '/user/profile'
   },
   {
-    pageName: 'MyCart',
-    pagePath: '/admin/adminprofile'
+    pageName: 'browse all',
+    pagePath: '/browse-all'
   },
   {
-    pageName: 'cheakout',
-    pagePath: '/user/cheakout'
+    pageName: 'signout',
+    pagePath: '/user/Settings-Bar'
   },
 ]
 
@@ -161,17 +164,10 @@ export const VoiceProvider = ({ children }) => {
 
   const commands = [
     {
-      command: 'Open :pageName page',
+      command: 'tell me about Eco Stream',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator(pageName)
-      }
-    },
-    {
-      command: 'I want to create an account',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('signup')
+        voicePageNavigator('about')
       }
     },
     {
@@ -182,12 +178,49 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'I want to buy something',
+      command: 'open home page',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('productView')
+        voicePageNavigator('home')
       }
     },
+    
+    {
+      command: 'I want to create user account',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('user-signup')
+      }
+    },
+    {
+      command: 'I want to create artist account',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('artist-signup')
+      }
+    },
+    {
+      command: 'I want to login as a user',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('user-login')
+      }
+    },
+    {
+      command: 'I want to login as a artist',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('artist-login')
+      }
+    },
+    {
+      command: 'I want to listen podcast',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('browse podcast')
+      }
+    },
+    
     {
       command: 'I want to contact you',
       callback: (pageName) => {
@@ -196,53 +229,46 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'open manage product page',
+      command: 'open my playlist',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('manageProduct')
+        voicePageNavigator('playlist')
       }
     },
     {
-      command: 'open login page',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('login')
-      }
-    },
-    {
-      command: 'open cheak out page',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('cheakout')
-      }
-    },
-    
-    {
-      command: 'open contact page',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('contact')
-      }
-    },
-    {
-      command: 'open reset password page',
+      command: 'i want to reset my password',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
         voicePageNavigator('resetPassword')
       }
     },
+    
     {
-      command: 'open signup page',
+      command: 'i want to logout',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('signup')
+        voicePageNavigator('signout')
       }
     },
     {
-      command: 'open admin dashboard',
+      command: 'play podcast',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('admindashboard')
+        voicePageNavigator('podcast details')
+      }
+    },
+    {
+      command: 'i want to add podcast',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('add podcast')
+      }
+    },
+    {
+      command: 'open categories',
+      callback: (pageName) => {
+        console.log('Opening page: ', pageName);
+        voicePageNavigator('browse all')
       }
     },
     {
@@ -395,12 +421,12 @@ export const VoiceProvider = ({ children }) => {
       SpeechRecognition.stopListening();
       triggerModal('Voice Assistant', 'Good Bye! Have a nice day!', false, <IconMicrophoneOff size={50} />);
     }
-    if (finalTranscript.includes('hello box')) {
+    if (finalTranscript.includes('hello')) {
       resetTranscript();
       voiceResponse('Hello! How can I help you today?');
       SpeechRecognition.startListening({ continuous: true });
     }
-    if (finalTranscript.includes('goodbye box')) {
+    if (finalTranscript.includes('goodbye ')) {
       voiceResponse('Goodbye! Have a nice day!');
       SpeechRecognition.stopListening();
       triggerModal('Voice Assistant', 'Good bye! have a nice Day', false, <IconMicrophoneOff size={50} />);
@@ -515,7 +541,7 @@ export const VoiceProvider = ({ children }) => {
       checkExistenceInTranscript
     }}>
 
-      <div className='bg-[#8C52FF] text-white text-center'>
+      <div className='bg-blue-500 text-white text-center'>
         <button className='floating-mic ' onClick={() => {
           if (listening) {
             SpeechRecognition.stopListening();
