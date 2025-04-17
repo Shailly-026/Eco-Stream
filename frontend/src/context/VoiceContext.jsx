@@ -515,7 +515,7 @@ export const VoiceProvider = ({ children }) => {
       checkExistenceInTranscript
     }}>
 
-      <div className='bg-[#8C52FF] text-white text-center'>
+      <div className='bg-blue-500 text-white text-center'>
         <button className='floating-mic ' onClick={() => {
           if (listening) {
             SpeechRecognition.stopListening();
