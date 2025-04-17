@@ -75,8 +75,8 @@ const pageDetails = [
     pagePath: '/artist-signup'
   },
   {
-    pageName: 'artist signup',
-    pagePath: '/artist-signup'
+    pageName: 'artist login',
+    pagePath: '/artist-login'
   },
   {
     pageName: 'login',
@@ -129,6 +129,14 @@ const pageDetails = [
   {
     pageName: 'signout',
     pagePath: '/user/Settings-Bar'
+  },
+  {
+    pageName: 'user profile',
+    pagePath: '/user/profile'
+  },
+  {
+    pageName: 'artist profile',
+    pagePath: '/artist/profile'
   },
 ]
 
@@ -189,28 +197,28 @@ export const VoiceProvider = ({ children }) => {
       command: 'I want to create user account',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('user-signup')
+        voicePageNavigator('user signup')
       }
     },
     {
       command: 'I want to create artist account',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('artist-signup')
+        voicePageNavigator('artist signup')
       }
     },
     {
       command: 'I want to login as a user',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('user-login')
+        voicePageNavigator('user login')
       }
     },
     {
       command: 'I want to login as a artist',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('artist-login')
+        voicePageNavigator('artist login')
       }
     },
     {
@@ -251,13 +259,6 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'play podcast',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('podcast details')
-      }
-    },
-    {
       command: 'i want to add podcast',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
@@ -272,66 +273,17 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'open manage user',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('manageuser')
-      }
-    },
-    {
-      command: 'open admin profile',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('adminprofile')
-      }
-    },
-    {
-      command: 'open add product',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('addProduct')
-      }
-    },
-    {
-      command: 'open manage product',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('manageProduct')
-      }
-    },
-    {
-      command: 'open seller dashboard',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('sellerdashboard')
-      }
-    },
-    {
-      command: 'open seller sign up',
-      callback: (pageName) => {
-        console.log('Opening page: ', pageName);
-        voicePageNavigator('sellersignup')
-      }
-    },
-    {
       command: 'open user profile',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('profile')
+        voicePageNavigator('user profile')
       }
     },
     {
-      command: 'open cart page',
+      command: 'open artist profile',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
-        voicePageNavigator('MyCart')
-      }
-    },
-    {
-      command: 'show me products',
-      callback: (pageName) => {
-        router.push('/productView');
-        voiceResponse('Showing all products');
+        voicePageNavigator('artist profile')
       }
     },
     {
@@ -396,9 +348,6 @@ export const VoiceProvider = ({ children }) => {
   useEffect(() => {
     if (!hasRun.current) {
       hasRun.current = true;
-      // SpeechRecognition.startListening({ continuous: true });
-      // voiceResponse('Welcome to Vox Market. What are you shopping today?');
-      // triggerModal('Voice Assistant', 'I am listening');
     }
   }, [])
 
@@ -406,7 +355,7 @@ export const VoiceProvider = ({ children }) => {
   useEffect(() => {
     setTimeout(() => {
       setShowInstruction(true);
-    }, 3000);
+    }, 2000);
   }, [])
 
 

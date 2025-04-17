@@ -27,7 +27,7 @@ const Login = () => {
       .then((result) => {
         toast.success('Login Successful');
         localStorage.setItem('user', result.data.token);
-        router.push('/user/browse-podcast');
+        router.push('/browse-podcast');
       }).catch((err) => {
         toast.error('Invalid Credentials');
         console.log(err);
