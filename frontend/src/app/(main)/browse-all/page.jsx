@@ -23,7 +23,7 @@ const BrowsePage = () => {
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-7xl mx-auto px-4 py-8">
         {/* Browse Section */}
-        <h2 className="text-2xl font-bold mb-4">Browse</h2>
+        <h2 className="text-2xl font-bold mb-4">Categories</h2>
         <div className="grid grid-cols-5 gap-3 mb-12">
           {categories.map((category, index) => (
             <div 

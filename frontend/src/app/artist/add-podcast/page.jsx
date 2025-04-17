@@ -41,7 +41,7 @@ export default function AddPodcast() {
       audioUrl: audioFile,
     };
 
-    fetch("http://localhost:5000/podcast/add", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/podcast/add`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(podcastData),

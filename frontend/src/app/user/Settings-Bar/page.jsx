@@ -1,8 +1,20 @@
 'use client';
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { LogOut, Edit, FileText, Volume2, Share2 } from 'lucide-react';
 
 const SettingsBar = ({ hovered }) => {
+  const router = useRouter();
+
+  const handleSignOut = () => {
+    // Clear authentication data (e.g., tokens)
+    localStorage.removeItem('authToken'); // Example: Remove token from localStorage
+    sessionStorage.clear(); // Clear session storage if needed
+
+    // Redirect to the login page
+    router.push('/user-login');
+  };
+
   return (
     <div
       className={`bg-gradient-to-r from-purple-900 via-purple-800 to-black p-4 rounded-lg shadow-lg transition-all duration-300 z-50 w-64 ${
@@ -14,7 +26,10 @@ const SettingsBar = ({ hovered }) => {
           <Edit size={20} className="mr-3" />
           <span>Edit Profile</span>
         </li>
-        <li className="flex items-center py-2 text-white text-sm hover:bg-purple-700 rounded-lg transition-all">
+        <li
+          onClick={handleSignOut}
+          className="flex items-center py-2 text-white text-sm hover:bg-purple-700 rounded-lg transition-all cursor-pointer"
+        >
           <LogOut size={20} className="mr-3" />
           <span>Sign Out</span>
         </li>

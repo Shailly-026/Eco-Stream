@@ -7,9 +7,9 @@ const UserProfile = () => {
   const [hovered, setHovered] = useState(false);
 
   const user = {
-    name: "Alex Johnson",
-    username: "@alexjpodcast",
-    bio: "Audio enthusiast. Podcast creator. Music lover.",
+    name: "Neelam Saaraswat",
+    username: "@neelamsaraswat",
+    bio: "Audio enthusiast. Podcast lover.",
     recentlyPlayed: [
       { id: 1, title: "The Daily Tech", publisher: "Tech Insider", cover: "/api/placeholder/60/60" },
       { id: 2, title: "Crime Junkie", publisher: "AudioChuck", cover: "/api/placeholder/60/60" },

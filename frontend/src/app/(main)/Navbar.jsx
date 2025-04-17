@@ -38,37 +38,10 @@ export default function Home() {
             <a href="/#Pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
           </nav>
           <div className="flex items-center space-x-4">
-            <button onClick={() => openModal("login")} className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Log In</button>
-            <button onClick={() => openModal("signup")} className="text-sm px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">Sign Up Free</button>
           </div>
         </div>
       </header>
 
-      {/* Role Selection Modal */}
-      {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-          <div className="bg-gray-800 p-6 rounded-lg text-center shadow-lg">
-            <h2 className="text-xl font-bold mb-4">Select Your Role</h2>
-            <div className="space-x-4">
-              <button
-                onClick={() => handleSelection("user")}
-                className="px-6 py-3 bg-green-600 hover:bg-green-500 rounded-lg text-lg"
-              >
-                User
-              </button>
-              <button
-                onClick={() => handleSelection("artist")}
-                className="px-6 py-3 bg-purple-600 hover:bg-purple-500 rounded-lg text-lg"
-              >
-                Artist
-              </button>
-            </div>
-            <button onClick={() => setIsModalOpen(false)} className="mt-4 text-gray-400 hover:text-white">
-              Cancel
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Home() {
           </div>
         </div>
       </header>
-      
+
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -65,12 +65,19 @@ export default function Home() {
               Say goodbye to tapping and scrolling.
             </p>
             <div className="flex flex-col md:flex-row justify-center gap-4">
-              <button className="px-8 py-4 bg-purple-600 rounded-full font-medium hover:bg-purple-700 transition-colors flex items-center justify-center">
-                Try for Free <ChevronRight className="ml-2 h-5 w-5" />
-              </button>
-              <button className="px-8 py-4 border border-purple-500 rounded-full font-medium hover:bg-purple-500/20 transition-colors flex items-center justify-center">
-                Watch Demo <PlayCircle className="ml-2 h-5 w-5" />
-              </button>
+              <div className="flex gap-4">
+                <Link href="/browse-podcast" >
+                  <button className="px-8 py-4 bg-purple-600 rounded-full font-medium hover:bg-purple-700 transition-colors flex items-center justify-center">
+                    Try for Free <ChevronRight className="ml-2 h-5 w-5" />
+                  </button>
+                </Link>
+
+                <Link href="/browse-all" >
+                  <button className="px-8 py-4 border border-purple-500 rounded-full font-medium hover:bg-purple-500/20 transition-colors flex items-center justify-center">
+                    Demo <PlayCircle className="ml-2 h-5 w-5" />
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -115,7 +122,7 @@ export default function Home() {
                 <Mic className="h-6 w-6 text-purple-400" />
               </div>
               <h3 className="text-xl font-semibold mb-4">Voice Commands</h3>
-              <p className="text-gray-400">Control everything with natural language. Play, pause, skip, save episodes with just your voice.</p>
+              <p className="text-gray-400">Control everything with natural language. Play, pause, skip, save podcast with just your voice.</p>
             </div>
 
             <div className="bg-gray-900 p-8 rounded-xl border border-purple-900/50 hover:border-purple-500 transition-colors">
@@ -151,7 +158,7 @@ export default function Home() {
                   <span className="text-2xl font-bold">1</span>
                 </div>
               </div>
-              <h3 className="text-xl font-semibold mb-4">Say "Hey EcoStream"</h3>
+              <h3 className="text-xl font-semibold mb-4">Say "hello"</h3>
               <p className="text-gray-400">Activate the voice assistant with our wake phrase to start controlling your podcast experience.</p>
             </div>
 
@@ -162,7 +169,7 @@ export default function Home() {
                 </div>
               </div>
               <h3 className="text-xl font-semibold mb-4">Tell Us What You Want</h3>
-              <p className="text-gray-400">Use natural language commands like "Play the latest episode of Tech Talk" or "Find podcasts about space."</p>
+              <p className="text-gray-400">Use natural language commands like "i want to listen podcast" or "Tell me about Eco Stream."</p>
             </div>
 
             <div className="text-center">
