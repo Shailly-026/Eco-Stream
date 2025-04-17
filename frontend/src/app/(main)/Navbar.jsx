@@ -2,10 +2,13 @@
 import React, { useState } from "react";
 import Head from 'next/head';
 import { Mic } from 'lucide-react';
+import useAppContext from "@/context/AppContext";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState(""); // "login" or "signup"
+
+  const { loggedIn, logout } = useAppContext();
 
   // Open modal and set auth type
   const openModal = (type) => {

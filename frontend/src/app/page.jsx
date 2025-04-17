@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
 import { Mic, PlayCircle, Headphones, Settings, Star, ChevronRight } from 'lucide-react';
+import useAppContext from "@/context/AppContext";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState(""); // "login" or "signup"
+
+  const { loggedIn, logout } = useAppContext();
 
   // Open modal and set auth type
   const openModal = (type) => {
@@ -40,10 +43,20 @@ export default function Home() {
             <a href="#How-it-works" className="hover:text-purple-400 transition-colors">How It Works</a>
             <a href="#Pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
           </nav>
-          <div className="flex items-center space-x-4">
-            <button onClick={() => openModal("login")} className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Log In</button>
-            <button onClick={() => openModal("signup")} className="text-sm px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">Sign Up Free</button>
-          </div>
+          {
+            !loggedIn ? (
+              <div className="flex items-center space-x-4">
+                <Link href="/user-profile" className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Profile</Link>
+                <button onClick={logout} className="text-sm px-4 py-2 bg-red-600 rounded-full hover:bg-red-700 transition-colors">Log Out</button>
+              </div>
+            ) : (
+
+              <div className="flex items-center space-x-4">
+                <button onClick={() => openModal("login")} className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Log In</button>
+                <button onClick={() => openModal("signup")} className="text-sm px-4 py-2 bg-purple-600 rounded-full hover:bg-purple-700 transition-colors">Sign Up Free</button>
+              </div>
+            )
+          }
         </div>
       </header>
 
