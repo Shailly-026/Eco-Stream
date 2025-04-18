@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import useAppContext from '@/context/AppContext';
 
 const ArtistLoginSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email').required('Required'),
@@ -14,6 +15,7 @@ const ArtistLoginSchema = Yup.object().shape({
 const ArtistLogin = () => {
 
   const router = useRouter();
+  const { setLoggedIn } = useAppContext();
 
   const artistLoginForm = useFormik({
     initialValues: {
@@ -27,6 +29,7 @@ const ArtistLogin = () => {
         .then((result) => {
           toast.success('Login Successful');
           localStorage.setItem('artist', result.data.token);
+          setLoggedIn(true);
           router.push('/artist/add-podcast');
         }).catch((err) => {
           toast.error('Invalid Credentials');

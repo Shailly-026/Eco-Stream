@@ -8,14 +8,39 @@ export const AppProvider = ({ children }) => {
   const router = useRouter();
 
   const [currentUser, setCurrentUser] = useState(
-    JSON.parse(sessionStorage.getItem("user"))
+    localStorage.getItem("user")
   );
 
-  const [loggedIn, setLoggedIn] = useState(currentUser !== null);
+
+  const [currentArtist, setCurrentArtist] = useState(
+    localStorage.getItem("artist")
+  );
+
+  const [loggedIn, setLoggedIn] = useState(currentUser !== null || currentArtist !== null);
+  const [artistLoggedIn, setArtistLoggedIn] = useState(currentArtist !== null);
+  // console.log(loggedIn);
+
 
   const logout = () => {
+    const artist = localStorage.getItem("artist");
+    if (artist) {
+      localStorage.removeItem("artist");
+      setArtistLoggedIn(false);
+      router.push("/artist-login");
+    } else {
+      localStorage.removeItem("user");
+      setLoggedIn(false);
+      router.push("/user-login");
+    }
+    // setCurrentUser(null);
+    // sessionStorage.removeItem("user");
+    // setLoggedIn(false);
+    // router.push("/user-login");
+  };
+
+  const artistLogout = () => {
     setCurrentUser(null);
-    sessionStorage.removeItem("user");
+    localStorage.removeItem("artist");
     setLoggedIn(false);
     router.push("/");
   };
@@ -28,6 +53,14 @@ export const AppProvider = ({ children }) => {
         loggedIn,
         setLoggedIn,
         logout,
+      }}
+
+      artistValue={{
+        currentArtist,
+        setCurrentArtist,
+        artistLoggedIn,
+        setArtistLoggedIn,
+        artistLogout,
       }}
     >
       {children}
