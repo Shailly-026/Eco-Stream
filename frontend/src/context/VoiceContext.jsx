@@ -67,7 +67,7 @@ const pageDetails = [
     pagePath: '/'
   },
   {
-    pageName: 'user signup',
+    pageName: 'user sign up',
     pagePath: '/user-signup'
   },
   {
@@ -470,6 +470,21 @@ export const VoiceProvider = ({ children }) => {
     speech.text = text;
     window.speechSynthesis.speak(speech);
   }
+
+  useEffect(() => {
+
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+
+    speech.voice = voices[12];
+    speech.lang = 'en-US';
+    speech.volume = 1; // From 0 to 1
+    speech.text = 'Hello! How can I help you?';
+    console.log(speech);
+    
+    window.speechSynthesis.speak(speech);
+  }, [])
+  
 
   const interpretVoiceCommand = () => {
     // const last = event.results.length - 1;

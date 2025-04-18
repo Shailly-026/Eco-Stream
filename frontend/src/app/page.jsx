@@ -4,12 +4,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { Mic, PlayCircle, Headphones, Settings, Star, ChevronRight } from 'lucide-react';
 import useAppContext from "@/context/AppContext";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [authType, setAuthType] = useState(""); // "login" or "signup"
 
   const { loggedIn, logout } = useAppContext();
+  const router = useRouter();
 
   // Open modal and set auth type
   const openModal = (type) => {
@@ -22,6 +24,15 @@ export default function Home() {
     const path = authType === "login" ? `/${role}-login` : `/${role}-signup`;
     window.location.href = path;
   };
+
+  const openProfile = () => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      router.push("/user/profile");
+    }else{
+      router.push("/artist/profile");
+    }
+  }
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -46,7 +57,7 @@ export default function Home() {
           {
             !loggedIn ? (
               <div className="flex items-center space-x-4">
-                <Link href="/user-profile" className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Profile</Link>
+                <button onClick={openProfile} className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Profile</button>
                 <button onClick={logout} className="text-sm px-4 py-2 bg-red-600 rounded-full hover:bg-red-700 transition-colors">Log Out</button>
               </div>
             ) : (
