@@ -35,6 +35,8 @@ export default function BrowsePodcasts() {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
+        
         setPodcasts(data);
 
         // Extract all unique tags
@@ -280,6 +282,7 @@ export default function BrowsePodcasts() {
                         <div className="flex-1 pr-4">
                           <h3 className="text-xl font-bold line-clamp-1">{podcast.title}</h3>
                           <p className="text-sm text-gray-400">{podcast.language} • {podcast.category}</p>
+                          {/* <p className="text-sm text-gray-400">{podcast.artist.name}</p> */}
                         </div>
                         <div className="flex gap-2">
                           <button onClick={() => handleEdit(podcast)} className="bg-blue-600 rounded-full p-2 hover:bg-blue-500 transition">

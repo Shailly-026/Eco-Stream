@@ -215,7 +215,7 @@ export const VoiceProvider = ({ children }) => {
       }
     },
     {
-      command: 'I want to login as a artist',
+      command: 'I want to login as an artist',
       callback: (pageName) => {
         console.log('Opening page: ', pageName);
         voicePageNavigator('artist login')

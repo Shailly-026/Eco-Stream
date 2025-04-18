@@ -5,9 +5,9 @@ const verifyToken = require("../middleware/verifyToken");
 const router = express.Router();
 
 // Create a new podcast
-router.post("/add", (req, res) => {
+router.post("/add", verifyToken, (req, res) => {
+  req.body.artist = req.user._id; // Set the artist ID from the token
   console.log(req.body);
-
   new Podcast(req.body).save()      //to save data in database using mongoose
     .then((result) => {
       res.status(200).json(result);
@@ -20,7 +20,7 @@ router.post("/add", (req, res) => {
 // Get all podcasts
 router.get('/getallpodcast', (req, res) => {
 
-  Podcast.find()
+  Podcast.find().populate('artist')
     .then((result) => {
       res.status(200).json(result);
     }).catch((err) => {
@@ -32,7 +32,7 @@ router.get('/getallpodcast', (req, res) => {
 // Get a single podcast by ID
 router.get('/getbyid/:id', (req, res) => {
 
-  Podcast.findById(req.params.id)
+  Podcast.findById(req.params.id).populate('artist')
     .then((result) => {
       if (!Podcast) return res.status(404).json({ message: "Podcast not found" });
       res.status(200).json(result);

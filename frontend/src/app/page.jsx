@@ -44,7 +44,7 @@ export default function Home() {
             <a href="#Pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
           </nav>
           {
-            !loggedIn ? (
+            loggedIn ? (
               <div className="flex items-center space-x-4">
                 <Link href="/user-profile" className="text-sm px-4 py-2 border border-purple-500 rounded-full hover:bg-purple-500/20 transition-colors">Profile</Link>
                 <button onClick={logout} className="text-sm px-4 py-2 bg-red-600 rounded-full hover:bg-red-700 transition-colors">Log Out</button>
