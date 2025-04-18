@@ -17,7 +17,7 @@ export const AppProvider = ({ children }) => {
     setCurrentUser(null);
     sessionStorage.removeItem("user");
     setLoggedIn(false);
-    router.push("/login");
+    router.push("/");
   };
 
   return (

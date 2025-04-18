@@ -555,38 +555,49 @@ export const VoiceProvider = ({ children }) => {
       triggerModal,
       checkExistenceInTranscript
     }}>
-
-      <div className='bg-blue-500 text-white text-center'>
-        <button className='floating-mic ' onClick={() => {
-          if (listening) {
-            SpeechRecognition.stopListening();
-          } else {
-            SpeechRecognition.startListening();
-          }
-        }}>{listening ?
-          (
-            <span >
-              <IconPlayerRecordFilled style={{ display: 'inline', color: 'white' }} color='#f00' /> listening... {transcript}
-            </span>
-          ) : (
-            <span className='text-xl'><FaMicrophone /></span>
-          )}</button>
-        {/* <p>Microphone: </p> */}
-        {/* <button onClick={SpeechRecognition.startListening}>Start</button>
-      <button onClick={SpeechRecognition.stopListening}>Stop</button>
-      <button onClick={resetTranscript}>Reset</button> */}
+      {/* Fixed position mic button in bottom right corner */}
+      <div className="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3" style={{ position: 'fixed', right: '24px', bottom: '24px', alignItems: 'flex-end', zIndex: 100 }}>
+        {/* Transcript display above the mic button */}
+        {listening && (
+          <div className="bg-gray-900/90 backdrop-blur-sm border border-purple-500/50 rounded-lg px-4 py-3 shadow-xl max-w-xs">
+            <div className="flex items-center gap-2 mb-1">
+              <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+              <p className="text-sm text-purple-300 font-medium">Listening...</p>
+            </div>
+            <p className="text-white text-sm max-h-32 overflow-y-auto">
+              {transcript || "Say something..."}
+            </p>
+          </div>
+        )}
+        
+        {/* Enhanced mic button with pulsing ring when active */}
+        <div className="relative">
+          <div className={listening ? "absolute inset-0 rounded-full shadow-[0_0_15px_3px_rgba(168,85,247,0.7)] animate-ping animate-duration-[1.5s]" : ""}></div>
+          <button 
+            className={`w-16 h-16 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ${
+              listening 
+                ? "bg-gradient-to-r from-purple-600 to-purple-800 ring-4 ring-purple-500/50" 
+                : "bg-gradient-to-r from-purple-500 to-purple-700 hover:scale-105"
+            }`}
+            onClick={() => {
+              if (listening) {
+                SpeechRecognition.stopListening();
+                triggerModal('Voice Assistant', 'Listening stopped', false, <IconMicrophoneOff size={30} />);
+              } else {
+                SpeechRecognition.startListening();
+                triggerModal('Voice Assistant', 'Listening...', false, <FaMicrophone size={30} />);
+              }
+            }}
+          >
+            <div className={`${listening ? "animate-pulse" : ""}`}>
+              <FaMicrophone className="text-white text-2xl" />
+            </div>
+          </button>
+        </div>
       </div>
 
       {children}
       <InfoModal {...modalOptions} showModal={showModal} setShowModal={setShowModal} />
-      {/* {
-        showInstruction &&
-        <div className='fixed top-0 left-0 w-full h-full bg-slate-900 opacity-90 z-20'>
-          <div className='h-full backdrop-blur-md'>
-            <InstructionModal setShowModal={setShowInstruction} />
-          </div>
-        </div>
-      } */}
     </VoiceContext.Provider>
   )
 }

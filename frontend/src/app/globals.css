@@ -13,3 +13,7 @@
 .userLogin-bg{
       background-image: url('../../public/8868.jpg');
 }
+
+html{
+      scroll-behavior: smooth;
+}
